@@ -101,7 +101,7 @@ Know Me provides:
 ## Integration Points
 
 - **Conductor**: Trip extension calendar management
-- **Joule**: Conversational profile updates
+- **Concur Engage/ Agentic**: Conversational profile updates
 - **Booking Agent**: Personalized recommendations
 - **Expense Agent**: Anomaly detection and validation
 - **Executive Assistant Co-Pilot**: Personal context management
