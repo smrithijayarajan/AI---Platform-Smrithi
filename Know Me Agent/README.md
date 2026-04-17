@@ -14,6 +14,7 @@ When any agent in Concur needs to understand a user—whether for booking recomm
 
 - **Profile-Know-Me-Agent-Requirements.md** - Complete functional and non-functional requirements document
 - **EA-Assistant-Know-Me-Requirements.md** - Executive Assistant Co-Pilot integration requirements (JIRA CP-37633)
+- **Non-GBTA-Use-Cases.md** - Additional use cases not part of GBTA roadmap (TextApp mobile verification, etc.)
 
 ## What Know Me Provides
 
