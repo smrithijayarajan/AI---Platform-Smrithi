@@ -13,6 +13,7 @@ When any agent in Concur needs to understand a user—whether for booking recomm
 ## Contents
 
 - **Profile-Know-Me-Agent-Requirements.md** - Complete functional and non-functional requirements document
+- **EA-Assistant-Know-Me-Requirements.md** - Executive Assistant Co-Pilot integration requirements (JIRA CP-37633)
 
 ## What Know Me Provides
 
