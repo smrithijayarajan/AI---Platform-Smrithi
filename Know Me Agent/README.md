@@ -35,18 +35,13 @@ When any agent in Concur needs to understand a user—whether for booking recomm
 - Prevents booking failures by validating completeness
 - Updates profile in real-time during conversations
 
-### Predictive Intelligence
-- Predicts expenses before they occur
-- Learns preferences automatically from behavior
-- Flags anomalies in real-time
-- Provides trip cost estimates
 
 ## Core Features
 
-### Feature 1: Missing Profile Field Detection
+### Feature 1: Missing Profile Field Detection (Priority for Conductor and EA Assistant workstream)
 Scenario-based validation that detects missing fields before booking (passport for international, KTN for TSA PreCheck, etc.) and prompts conversationally during booking flow.
 
-### Feature 2: Dynamic Learning & Pattern Recognition
+### Feature 2: Dynamic Learning & Pattern Recognition ( Priority for EA Assistant workstream)
 Automatically learns preferences from booking behavior, expense submissions, and calendar events without manual configuration. Calculates confidence scores and adapts to pattern changes.
 
 ## Use Cases
@@ -84,13 +79,6 @@ Know Me provides:
 - Auto-suggests: Order flowers + notify Lisa
 ```
 
-## Key Technologies
-
-- **Microsoft Graph API**: Calendar and email integration
-- **SAP Identity Service**: Profile data storage (CP-35908)
-- **Machine Learning**: Pattern recognition and prediction
-- **OAuth 2.0**: User JWT-based profile writes
-- **GDPR Compliance**: Data export, deletion, access history
 
 ## Success Metrics
 
