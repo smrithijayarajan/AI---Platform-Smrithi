@@ -6,24 +6,33 @@ Based on Travel Profile Service field details, this document categorizes profile
 
 ## **REQUIRED Fields for Booking**
 
-### Identity & Legal Name
-- **Travel CRS Name** (Text, 60 chars) - Exact name in GDS, must match ID/passport. Format: LASTNAME/FIRSTNAME
-- **First Name** (Text, 60 chars)
-- **Last Name** (Text, 60 chars)
+### Identity & Legal Name (All Bookings)
+
+| Field Name | Type | Max Length | Why Required | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Travel CRS Name** | Text | 60 chars | Must match traveler's ID/passport exactly for GDS booking. Format: LASTNAME/FIRSTNAME | **Booking failure** if missing or mismatched. Airlines reject tickets when name doesn't match ID. Customer cannot board flight and loses money on non-refundable tickets. |
+| **First Name** | Text | 60 chars | Legal identity verification required by all travel suppliers (airlines, hotels, car rentals) | **Booking rejection** - Cannot complete any reservation without legal first name. System cannot generate ticket or confirmation. |
+| **Last Name** | Text | 60 chars | Legal identity verification required by all travel suppliers | **Booking rejection** - Cannot complete any reservation without legal last name. System cannot generate ticket or confirmation. |
 
 ### International Travel - REQUIRED
-- **Passport Number** (Text, 100 chars)
-- **Passport Issuing Country** (Choice, 2-letter ISO)
-- **Passport Nationality** (Choice, 2-letter ISO)
-- **Passport Expiration Date** (Date, YYYY-MM-DD)
-- **Middle Name** (Text, 60 chars) - Required by some airlines for international flights
 
-### Payment
-- **Credit Card Account Number** (Text, 150 chars, ASCII only)
-- **Card Vendor** (Choice - Visa, Mastercard, Amex, etc.)
-- **Name on Card** (Text, 255 chars)
-- **Card Expiration Date** (Date, YYYY-MM-DD)
-- **Credit Card Display Name** (Text, 255 chars)
+| Field Name | Type | Max Length | Why Required | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Passport Number** | Text | 100 chars | Required by immigration authorities for international border crossing. Airlines must transmit passenger data (APIS - Advanced Passenger Information System) before departure. | **Booking blocked** - International flights cannot be ticketed without passport number. Customer forced to manually add at check-in, causing delays. Risk of denied boarding if not added before departure. |
+| **Passport Issuing Country** | Choice | 2-letter ISO | Immigration systems validate passport authenticity against issuing country. Required for visa eligibility checks. | **Immigration denial** - Without this, airline cannot validate visa requirements. Customer may be denied boarding if destination country requires visa for their passport country. |
+| **Passport Nationality** | Choice | 2-letter ISO | Determines visa requirements, visa-waiver eligibility (e.g., US ESTA), and entry permissions for destination country. | **Entry denial at border** - Customer may arrive at destination and be denied entry if visa-waiver assumptions were incorrect. Airline may deny boarding to avoid fines. |
+| **Passport Expiration Date** | Date | YYYY-MM-DD | Most countries require passport validity 6+ months beyond travel dates. Airlines check this before boarding to avoid fines for transporting passengers who will be denied entry. | **Denied boarding** - Customer arrives at airport and is turned away if passport expires too soon. Loses entire trip cost. No rebooking possible without passport renewal. |
+| **Middle Name** | Text | 60 chars | Required by some airlines (especially for international flights) to match passport exactly. US TSA Secure Flight program requires exact name match. | **Booking rejection or flight delay** - If name on ticket doesn't match passport middle name, customer faces re-ticketing fees ($200+) or denied boarding. Must arrive extra early to resolve at airport. |
+
+### Payment - REQUIRED
+
+| Field Name | Type | Max Length | Why Required | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Credit Card Account Number** | Text (ASCII) | 150 chars | All travel bookings require payment guarantee. Hotels/car rentals hold deposit. Airlines charge at time of booking. | **Complete booking failure** - Cannot reserve flight, hotel, or car without payment method. Customer stuck in booking flow, forced to exit and find payment card. Lost time and frustration. |
+| **Card Vendor** | Choice | — | Payment processors route transactions differently based on card network (Visa, Mastercard, Amex). Some suppliers don't accept certain card types (e.g., Amex not accepted everywhere). | **Payment failure at checkout** - Customer thinks booking is complete but payment declines due to unsupported card type. Must restart entire booking process. Hotel/flight price may increase during delay. |
+| **Name on Card** | Text | 255 chars | Fraud prevention - card name must match traveler or corporate cardholder. Hotels/car rentals verify card at check-in. | **Declined at check-in** - Hotel or car rental desk rejects card if name doesn't match reservation. Customer stranded without accommodation or transportation. Must provide alternate payment on-site. |
+| **Card Expiration Date** | Date | YYYY-MM-DD | Payment authorization requires valid card. Expired cards are declined immediately. Future bookings fail if card expires before travel date. | **Payment decline** - Booking fails at checkout if card is expired. For future-dated trips, customer may complete booking but payment fails later when supplier charges card, causing automatic cancellation without warning. |
+| **Credit Card Display Name** | Text | 255 chars | Helps customer identify which card is being used (e.g., "Corporate Amex", "Personal Visa"). Prevents accidental use of personal card for business travel. | **Expense violation** - Customer accidentally books with wrong card type, causing expense report rejection and out-of-pocket reimbursement delays. May violate company policy, requiring manager approval or personal payment. |
 
 ---
 
