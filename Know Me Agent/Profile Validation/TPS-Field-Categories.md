@@ -38,6 +38,16 @@ Based on Travel Profile Service field details, this document categorizes profile
 
 ## **RECOMMENDED Fields for Enhanced Experience**
 
+### Contact Information ⚠️ CRITICAL - Do Not Block Booking
+
+**Note:** While these fields don't block booking completion, they are **critical for travel success**. Missing contact information means customers miss flight delays, gate changes, and cancellations—causing missed connections, stranded travelers, and ruined trips. Strongly prompt for these fields before finalizing bookings.
+
+| Field Name | Type | Max Length | Why Critical | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Primary Email Address** | Text (ASCII) | 255 chars | **ALL booking confirmations, itinerary changes, boarding passes, hotel confirmations sent via email.** Only reliable way to receive critical travel updates and documents. Airlines send last-minute gate changes, delay notifications, cancellation alerts via email. | **⚠️ CRITICAL: Customer misses flight delays/cancellations** - Without email, customer unaware of 3-hour delay until airport arrival (wasted trip). Misses cancellation notice—shows up at airport for non-existent flight. Cannot access mobile boarding pass—forced to print at kiosk (long lines, risk of missing flight if check-in deadline passed). Must call customer service (45+ min wait) to get confirmation numbers. **Cannot receive itinerary if plans change—stranded without hotel address or confirmation codes.** |
+| **Primary Mobile Phone Number** | Text | 60 chars | **Real-time SMS alerts for flight delays (average 45 min), cancellations, gate changes (5-10 min notice), boarding calls.** Enables TextApp receipt submission (eliminates paper receipts, saves 30+ min per expense report). Hotel/ride-share coordination via SMS. Duty of care emergency contact during travel. | **⚠️ CRITICAL: Customer misses time-sensitive alerts** - Flight delayed 2 hours but customer doesn't know—arrives at airport 2 hours early unnecessarily OR misses earlier notification and arrives for original time (gate already closed). **Gate change from B12 to C45 with 10 min notice—customer boards wrong flight or misses flight entirely.** Cancellation notification via SMS at 6 AM—customer without phone sleeps through, drives to airport for cancelled flight. Cannot use TextApp—must save paper receipts for weeks, manual upload takes 45+ min. Ride-share driver cannot reach customer for pickup (wait time exceeded, ride cancelled, customer stranded). **In emergency, company cannot reach traveler for duty of care (natural disaster, political unrest, medical emergency).** |
+| **Phone Country Code** | Choice | 2-letter ISO | Ensures SMS/calls reach correct international phone number format (+1 US, +44 UK, +49 DE). Without correct country code, all notifications sent to wrong number. | **⚠️ CRITICAL: All communication fails internationally** - Airline sends gate change SMS to +1 (assuming US) but customer's phone is +44 UK—message never received. Customer misses gate change, flight departs without them. Hotel cannot reach customer for late arrival—cancels room as no-show. Ride-share driver calls wrong number—customer stranded at airport. Emergency contact attempts fail—family cannot reach traveler in crisis. |
+
 ### TSA/Trusted Traveler (US Travel)
 
 | Field Name | Type | Max Length | Why Recommended | Impact on Customer Experience |
@@ -236,6 +246,23 @@ Based on Travel Profile Service field details, this document categorizes profile
 - Any booking without payment card
 - Missing Travel CRS Name or legal name fields
 
+### Critical Non-Blocking Validations (Allow Booking, Strong Warning) ⚠️
+**Contact Information - Don't block booking but show prominent warning:**
+- Missing primary email address - Customer will not receive confirmations, boarding passes, or flight alerts
+- Missing primary mobile phone number - Customer will miss gate changes, delays, cancellations via SMS
+- Missing phone country code - International travelers will not receive any SMS notifications
+
+**Rationale:** We don't want to block a booking completely, but missing contact info significantly increases risk of:
+- Missed flights due to gate changes (average 10 min notice)
+- Arriving at airport unaware of cancellations (wasted trip)
+- Cannot access mobile boarding pass (forced to use kiosk, risk missing check-in deadline)
+- Stranded during travel without way to receive updated itinerary
+
+**UX Pattern:** Multi-step warning before allowing skip:
+1. First prompt: "I strongly recommend adding contact info - here's why..."
+2. If user skips: "⚠️ Final warning - without contact info you risk missing your flight. Add now?"
+3. If user skips again: Allow booking but log high-priority work item for follow-up
+
 ### Warning Validations (Allow Booking, Show Warning)
 - Passport expires within 6 months of travel date (many countries require 6-month validity)
 - Visa expiration before return date
@@ -246,8 +273,7 @@ Based on Travel Profile Service field details, this document categorizes profile
 - Missing TSA PreCheck for US domestic flights (suggest adding to save time)
 - Missing airline loyalty number (suggest adding to earn miles)
 - Missing hotel loyalty number (suggest adding to earn points)
-- Missing mobile number (suggest adding for SMS alerts and TextApp)
-- Missing email (suggest adding for booking confirmations)
+- Missing visa for international destinations that commonly require visas
 
 ### Contextual Validation Examples
 
@@ -271,8 +297,40 @@ Know Me validates:
 ✓ Travel CRS Name: FREDERICKS/FRED
 ✓ Payment Card: ending in 1234
 ⚠ TSA PreCheck: Not enrolled (recommend)
+⚠️ CRITICAL - Email: Missing (strongly recommend - cannot receive alerts)
+⚠️ CRITICAL - Mobile Phone: Missing (strongly recommend - cannot receive gate changes)
 
-Prompt: "You're not enrolled in TSA PreCheck. Adding your Known Traveler Number can save you 15+ minutes at security. Want to add it now, or skip?"
+Prompt: "Before I finalize your booking, I strongly recommend adding your contact information:
+
+📧 Email address - I'll send your boarding pass and any flight updates here
+📱 Mobile phone - You'll get instant SMS alerts if your gate changes or flight is delayed
+
+Without these, you might miss critical updates and could miss your flight. It only takes 30 seconds to add them.
+
+Would you like to add your contact info now, or proceed without it? (Not recommended)"
+```
+
+**Scenario: Fred books international flight without contact info**
+```
+Know Me validates:
+✓ All required fields present (passport, payment, legal name)
+⚠️ CRITICAL - Email: Missing
+⚠️ CRITICAL - Mobile Phone: Missing
+
+Prompt: "⚠️ Important: Your booking is ready, but you're missing critical contact information.
+
+Without an email address and mobile phone number:
+• You won't receive your boarding pass
+• You'll miss gate changes (average 10 minutes notice)
+• You won't be notified if your flight is delayed or cancelled
+• You cannot use our TextApp to submit receipts during your trip
+• We cannot reach you in an emergency
+
+This significantly increases your risk of missing your flight or being stranded during travel.
+
+I can add this information in 30 seconds. What's your email and mobile number?"
+
+[Allow skip with additional warning: "I understand the risks - proceed without contact info"]
 ```
 
 ---
