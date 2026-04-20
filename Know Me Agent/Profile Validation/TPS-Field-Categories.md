@@ -39,116 +39,164 @@ Based on Travel Profile Service field details, this document categorizes profile
 ## **RECOMMENDED Fields for Enhanced Experience**
 
 ### TSA/Trusted Traveler (US Travel)
-- **TSA PreCheck Number / Known Traveler Number (KTN)** (Text, 150 chars) - Faster security screening
-- **Redress Number** (Text, 150 chars) - For travelers on watchlists
-- **TSA Date of Birth** (Date, YYYY-MM-DD)
-- **TSA Gender** (Choice: Male, Female)
+
+| Field Name | Type | Max Length | Why Recommended | Impact on Customer Experience |
+|------------|------|------------|-----------------|------------------------------|
+| **TSA PreCheck Number / Known Traveler Number (KTN)** | Text | 150 chars | Enables expedited security screening at US airports. Separate, faster TSA PreCheck lanes skip removing shoes, laptops, liquids, belts. | **Time savings: 15-30 minutes per flight** - Customer waits in long standard security line (45+ min during peak times) vs. TSA PreCheck line (5-10 min). Reduces airport arrival time, lowers stress, minimizes missed flight risk. Without KTN, customer loses benefit they paid for ($85/5 years). |
+| **Redress Number** | Text | 150 chars | For travelers mistakenly flagged on government watchlists (name similarity to restricted persons). Prevents repeated "SSSS" stamps causing extra screening. | **Eliminates harassment and delays** - Without redress number, customer faces extra 30-60 min screening at every checkpoint, invasive bag searches, interrogation. Causes missed flights and extreme stress. Redress number clears false match permanently. |
+| **TSA Date of Birth** | Date | YYYY-MM-DD | TSA Secure Flight program matches passengers against watchlists using name + DOB. Reduces false positives (common names). | **Prevents security delays** - Without DOB, customer with common name (e.g., "John Smith") flagged for extra screening due to name match. Adding DOB disambiguates identity, eliminates unnecessary delays. |
+| **TSA Gender** | Choice | — | Required for TSA Secure Flight data matching. Must match ID used for travel. | **Avoids TSA mismatch errors** - If ticket gender doesn't match ID, customer flagged at security for manual verification. Causes delays and uncomfortable questioning. |
 
 ### Loyalty Programs (Earn Points/Miles)
-- **Air Loyalty Program Account Number** (Text, 60 chars) - Frequent flyer number
-- **Air Loyalty Vendor Code** (Text, 2 chars, ASCII) - e.g., UA, AA, LH
-- **Hotel Loyalty Account Number** (Text, 60 chars) - e.g., Marriott Bonvoy, Hilton Honors
-- **Car Rental Loyalty Account Number** (Text, 60 chars) - e.g., Hertz Gold
-- **Rail Loyalty Account Number** (Text, 60 chars)
+
+| Field Name | Type | Max Length | Why Recommended | Impact on Customer Experience |
+|------------|------|------------|-----------------|------------------------------|
+| **Air Loyalty Program Account Number** | Text | 60 chars | Automatically earns frequent flyer miles for every flight booked. Miles accumulate toward free flights, upgrades, elite status. | **Lost value: $200-500+ per trip** - Without loyalty number, customer loses miles worth hundreds of dollars. Elite status benefits (free bags, upgrades, priority boarding) unavailable. Cannot retroactively claim miles easily—requires manual forms and receipts. |
+| **Air Loyalty Vendor Code** | Text (ASCII) | 2 chars | Links correct frequent flyer program to airline (e.g., UA for United, AA for American). Ensures miles credit to right account. | **Miles credited to wrong program or lost** - Customer books United flight but miles go to wrong airline. Miles lost forever or require complex transfer process. Cannot reach elite status thresholds. |
+| **Hotel Loyalty Account Number** | Text | 60 chars | Earns hotel points (Marriott Bonvoy, Hilton Honors) for every stay. Points redeem for free nights, upgrades. Elite status provides free breakfast, room upgrades, late checkout. | **Lost value: $100-300+ per stay** - Customer loses free night credits, upgrades, elite benefits (free breakfast worth $30/day). Must pay for upgrades that would be free with status. Cannot accumulate points toward vacation stays. |
+| **Car Rental Loyalty Account Number** | Text | 60 chars | Earns rental credits, enables faster pickup (skip counter line), provides upgrade eligibility, and insurance benefits. | **Lost time and perks** - Customer waits in 20+ min line at rental counter. Loses free upgrade opportunities. Must fill out paperwork every time. No loyalty discounts or insurance benefits applied. |
+| **Rail Loyalty Account Number** | Text | 60 chars | For frequent rail travelers (Amtrak, European rail operators). Earns points toward free trips, discounts, priority booking. | **Lost rewards: $50-200+ per trip** - Customer loses points/discounts on frequent rail travel. Must pay full price for future trips instead of redeeming free travel earned through loyalty. |
 
 ### Contact Information
-- **Primary Email Address** (Text, 255 chars, ASCII) - For confirmations
-- **Primary Mobile Phone Number** (Text, 60 chars) - For SMS alerts, TextApp
-- **Phone Country Code** (Choice, 2-letter ISO)
+
+| Field Name | Type | Max Length | Why Recommended | Impact on Customer Experience |
+|------------|------|------------|-----------------|------------------------------|
+| **Primary Email Address** | Text (ASCII) | 255 chars | All booking confirmations, itinerary updates, boarding passes, hotel confirmations sent via email. Only reliable way to receive travel documents. | **Lost confirmations and itineraries** - Customer doesn't receive booking confirmation number, boarding pass, hotel address. Must call customer service (30+ min wait) to get confirmation. Risk of missed check-in deadline. Cannot access mobile boarding pass—forced to print at airport. |
+| **Primary Mobile Phone Number** | Text | 60 chars | Enables SMS flight alerts (delays, cancellations, gate changes), TextApp receipt submission, hotel check-in notifications, ride-share pickup coordination. | **Missed critical alerts** - Customer unaware of 3-hour flight delay until arrival at airport. Misses gate change, boards wrong flight. Cannot use TextApp to submit receipts (must save paper, manual upload). No SMS confirmation for hotel/car pickup. Adds stress and wasted time. |
+| **Phone Country Code** | Choice | 2-letter ISO | Ensures SMS/calls reach correct international phone number format. Prevents messages sent to wrong country code. | **Communication failure** - Airline sends SMS alerts to wrong number (e.g., assumes US +1 instead of UK +44). Customer misses flight delay notification. Hotel cannot reach customer for late check-in issues. |
 
 ### Travel Preferences (Pre-fill Booking Requests)
-- **Home Airport** (Text, 3 chars, IATA code) - Preferred departure airport
-- **Air Seat Position (Row)** (Choice: Aisle, Window, Middle, Center, AisleAcross, Isolated, NOPREF)
-- **Air Seat Position (Section)** (Choice: Forward, Rear, RearTail, Tail, Bulkhead, Exit, Wing, NOPREF)
-- **Air Meal Preference** (Choice - Vegetarian, Kosher, Muslim, GlutenFree, etc.)
-- **Hotel Room Type** (Choice: Single, Double, Twin, Queen, King, Disability, DontCare)
-- **Hotel Smoking Preference** (Choice: NonSmoking, Smoking, DontCare)
-- **Car Type Preference** (Choice - Compact, Midsize, Fullsize, SUV, etc.)
-- **Car Transmission** (Choice: Automatic, Manual, DontCare)
+
+| Field Name | Type | Max Length | Why Recommended | Impact on Customer Experience |
+|------------|------|------------|-----------------|------------------------------|
+| **Home Airport** | Text (IATA) | 3 chars | Pre-fills departure airport in search, saving time. AI agents recommend flights from preferred airport automatically. | **Saves 30+ seconds per search** - Customer doesn't manually type airport every time. Prevents accidental bookings from wrong airport (e.g., searches SFO but lives near OAK). Reduces booking errors and frustration. |
+| **Air Seat Position (Row)** | Choice | — | Auto-selects aisle/window seat during booking. Ensures comfort preference honored without manual seat map navigation. | **Prevents uncomfortable flights** - Customer forgets to select seat, gets stuck in middle seat on 6-hour flight (extremely uncomfortable). Aisle preference for frequent bathroom needs, window for sleeping. Auto-selection ensures preferred experience every time. |
+| **Air Seat Position (Section)** | Choice | — | Selects preferred cabin location (exit row for legroom, forward for quick deplaning, rear for quieter). | **Comfort and convenience** - Customer stuck in back row (loud engines, slow deplaning—extra 20 min wait). Exit row gives 4+ inches extra legroom critical for tall travelers. Forward section deplanes first, saving time at destination. |
+| **Air Meal Preference** | Choice | — | Pre-orders special meals (vegetarian, kosher, gluten-free, diabetic). Airlines require 24-72 hours advance notice. | **No suitable meal on flight** - Customer with dietary restriction (vegetarian, allergic to gluten) has no meal option on international flight (10+ hours). Must go hungry or risk allergic reaction. Last-minute special meal requests often declined—too late to fulfill. |
+| **Hotel Room Type** | Choice | — | Pre-selects king bed, double queen, accessibility room. Ensures room type availability at time of booking. | **Wrong room type at check-in** - Customer arrives at hotel requesting king bed but only double queens available (uncomfortable for couples). Accessibility rooms unavailable for disabled travelers. Must accept unsuitable room or find different hotel (time lost, higher prices). |
+| **Hotel Smoking Preference** | Choice | — | Ensures non-smoking room assignment. Smoking rooms smell strongly of cigarette smoke even when unoccupied. | **Health and comfort issue** - Non-smoking customer assigned smoking room, cannot sleep due to smell/allergies. Hotel fully booked, cannot switch rooms. Ruins entire stay. Must pay for room despite unusable conditions. |
+| **Car Type Preference** | Choice | — | Pre-selects car size (compact for city, SUV for family/luggage). Ensures availability and avoids mismatches. | **Wrong vehicle for needs** - Customer books compact car, arrives with 4 colleagues + luggage (doesn't fit). Must upgrade on-site at 2-3× price or make multiple trips. SUV needed for winter mountain roads but compact provided—unsafe driving conditions. |
+| **Car Transmission** | Choice | — | Critical for international travel where manual transmission is standard. US drivers unfamiliar with manual cannot drive safely. | **Cannot drive rental car** - Customer cannot drive manual transmission, rental counter has no automatics available (common in Europe). Stranded at airport, forced to pay premium for automatic or cancel plans. Safety risk if attempts manual without experience. |
 
 ### International Travel - RECOMMENDED
-- **Visa Number** (Text, 100 chars) - For countries requiring visas
-- **Visa Type** (Choice: SingleEntry, DoubleEntry, MultiEntry, ESTA, ETA, SchengenVisa, Unknown)
-- **Visa Expiration Date** (Date, YYYY-MM-DD)
-- **Visa Country Issued** (Choice, 2-letter ISO)
+
+| Field Name | Type | Max Length | Why Recommended | Impact on Customer Experience |
+|------------|------|------------|-----------------|------------------------------|
+| **Visa Number** | Text | 100 chars | Required for entry to countries that mandate visas (China, India, Russia, Brazil, etc.). Must be obtained weeks/months before travel. | **Entry denied at border** - Customer arrives at destination without visa, denied entry by immigration. Deported on next flight at customer's expense ($1,000+ last-minute ticket). Entire trip cancelled, hotels/meetings lost. Visa application takes weeks—missing visa number means Know Me Agent cannot warn in time to apply. |
+| **Visa Type** | Choice | — | Different visas allow different activities (tourist vs. business vs. multi-entry). Wrong visa type causes entry denial or restrictions. | **Entry complications or denial** - Customer enters on tourist visa but conducts business (illegal in many countries). Immigration discovers work emails/materials, deports traveler and bans future entry. Single-entry visa used up on first leg, cannot re-enter for return flight. Multi-entry needed for trips with multiple countries. |
+| **Visa Expiration Date** | Date | YYYY-MM-DD | Airlines check visa validity before boarding. Expired visa causes denied boarding and trip cancellation. | **Denied boarding at departure** - Customer arrives at airport, airline sees expired visa, denies boarding (airline fined if transporting invalid passengers). Customer loses entire trip cost (flight, hotels, meetings). No time to renew visa—process takes weeks. Trip cancelled, must rebook after renewal ($3,000+ total loss). |
+| **Visa Country Issued** | Choice | 2-letter ISO | Some visas valid only for specific entry points or issued by specific countries. Validates visa authenticity. | **Immigration delays or denial** - Visa issued by wrong country/embassy causes confusion at border. Customer detained for questioning (30-120 min). May be denied entry if visa authenticity questioned. Ruins arrival experience and causes missed connections/meetings. |
 
 ### Emergency & Safety
-- **Emergency Contact Name** (Text, 255 chars)
-- **Emergency Contact Phone** (List of phone numbers)
-- **Emergency Contact Relationship** (Choice: BRO, SIS, SPS, PRT, PAR, OTH)
-- **Medical Alerts** (Text) - *Note: Only first 3 characters preserved in backend sync - effectively limited utility*
+
+| Field Name | Type | Max Length | Why Recommended | Impact on Customer Experience |
+|------------|------|------------|-----------------|------------------------------|
+| **Emergency Contact Name** | Text | 255 chars | Airlines, hotels, and hospitals need emergency contact if traveler is incapacitated (medical emergency, accident, severe illness). | **No one notified in crisis** - Customer has medical emergency abroad (heart attack, accident). Hospital cannot reach family for 12+ hours. Family unaware of crisis, cannot make medical decisions or travel to bedside. Extreme distress for family and delayed critical care decisions. |
+| **Emergency Contact Phone** | List | — | Enables immediate notification if traveler is hospitalized, injured, or in life-threatening situation. | **Family unreachable in emergency** - Hospital tries wrong number or no contact info available. Family doesn't learn of emergency until traveler regains consciousness (days later). Cannot provide medical history, insurance info, or consent for procedures. Legal/medical complications. |
+| **Emergency Contact Relationship** | Choice | — | Clarifies authority for medical decisions (spouse has legal authority, siblings may not). Hospitals prioritize contacts based on relationship. | **Medical decision delays** - Hospital unsure who has legal authority for emergency surgery. Delays treatment while verifying relationship/authority. Critical minutes lost in life-threatening situation. Wrong person contacted first (distant relative instead of spouse). |
+| **Medical Alerts** | Text | 3 chars (sync) | Alerts airlines/hotels to critical medical conditions (allergies, diabetes, heart conditions) for emergency response. *Note: Only 3 chars preserved in backend—severely limited utility.* | **Emergency responders unaware of condition** - Customer has severe allergic reaction, EpiPen in bag. Airline crew unaware of allergy, delays treatment. Diabetic customer loses consciousness, crew doesn't know to check blood sugar. Life-threatening delays in proper care. **Technical limitation makes this field nearly useless—only 3 characters sync to booking systems.** |
 
 ---
 
 ## **OPTIONAL Fields (Nice-to-Have)**
 
 ### Personal Information
-- **Name Prefix** (Text, 60 chars) - Mr., Mrs., Dr., Prof.
-- **Middle Name** (Text, 60 chars) - Unless required for international
-- **Name Suffix** (Text, 60 chars) - Jr., Sr., III
-- **Preferred Name** (Text, 60 chars) - Display only, not on tickets
-- **Date of Birth** (Date, YYYY-MM-DD)
-- **Gender** (Choice: Male, Female, Unspecified, Undisclosed, Unknown)
+
+| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Name Prefix** | Text | 60 chars | Courtesy title (Mr., Mrs., Dr., Prof.) for professional/formal communications. Not required for travel bookings. | **Minimal impact** - Used only for formal correspondence. Missing prefix doesn't affect booking functionality. Some customers prefer no title for privacy/gender reasons. Purely presentational—no operational impact. |
+| **Middle Name** | Text | 60 chars | Optional for domestic travel. Only required for international flights by some airlines. | **No impact for domestic travel** - Domestic bookings work fine without middle name. For international, if required, it becomes mandatory (covered in Required section). Having it pre-filled saves time but not critical for most trips. |
+| **Name Suffix** | Text | 60 chars | Generational/honorific suffix (Jr., Sr., III, Esq.). Rarely required for bookings. | **Minimal impact** - Used for formal communication and name disambiguation in large companies. Booking systems rarely require it. Missing suffix doesn't affect ticket validity or travel experience. |
+| **Preferred Name** | Text | 60 chars | Display name for internal systems only. Never appears on tickets or legal documents. | **Internal UX only** - Makes UI more personalized ("Welcome back, Mike!" vs. "Welcome back, Michael!"). No impact on booking functionality. Purely cosmetic for user comfort. |
+| **Date of Birth** | Date | YYYY-MM-DD | Used for age-based discounts (senior, youth), loyalty program enrollment, and some international destinations. | **Minor convenience** - Enables automatic senior discounts (AARP rates), youth hostel eligibility. Some hotels/rentals verify age at check-in (25+ for car rentals). Helpful but workarounds exist (provide at booking time). |
+| **Gender** | Choice | — | Optional personal data. Some loyalty programs track demographics. Hotels may use for room assignment preferences. | **Minimal impact** - Rarely affects booking. Some cultures/hotels have gender-specific floors or facilities. Demographic data for company travel analytics. Customer can skip if prefer not to disclose. |
 
 ### Work/Organization
-- **Job Title** (Text, 255 chars)
-- **Company Employee ID** (Text, 48 chars)
-- **Cost Center** (Text, 25 chars)
-- **Rule Class** (Text, 60 chars) - Travel policy tier
+
+| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Job Title** | Text | 255 chars | Used for company reporting, travel policy enforcement, VIP handling. Not required for booking functionality. | **Internal reporting only** - Helps travel managers analyze travel by role (executives vs. ICs). Some hotels provide VIP treatment for C-level titles. No impact on booking capability. Useful for expense categorization but not mandatory. |
+| **Company Employee ID** | Text | 48 chars | Links travel profile to HR system for expense reconciliation and policy enforcement. Internal identifier only. | **Backend convenience** - Streamlines expense report matching to employee records. No customer-facing impact. Customer can book travel without it—expense team reconciles manually if needed (slightly slower). |
+| **Cost Center** | Text | 25 chars | Accounting code for billing travel expenses to correct department budget. Used in expense reporting, not booking. | **Finance reporting only** - Ensures travel costs charged to correct budget. Doesn't affect booking or travel experience. Finance team can re-code expenses if missing (manual process but not blocking). |
+| **Rule Class** | Text | 60 chars | Determines travel policy tier (executive policy vs. standard). Affects what the customer is allowed to book (class of service, hotel price limits). | **Policy enforcement** - Without rule class, system may default to most restrictive policy (denies premium options). Or defaults to most permissive (expense rejection later). Affects comfort and convenience but not absolute ability to book—can override with manager approval. |
 
 ### Additional Contact
-- **Home Address** (Street, City, State, Country, Zip)
-- **Work Address** (Street, City, State, Country, Zip)
-- **Secondary Email Addresses** (work2, other2)
-- **Additional Phone Numbers** (work, home, fax, pager)
+
+| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Home Address** | Address | Various | Used for car rental pickups at home, emergency contact purposes, and mileage reimbursement calculations. | **Convenience feature** - Enables "pick up at home" for car services. Helps calculate distance for mileage reimbursement. Not required for bookings—customer can enter ad-hoc if needed. Minor time savings only. |
+| **Work Address** | Address | Various | Used for default pickup/drop-off location for ground transportation, meeting location coordination. | **Convenience feature** - Pre-fills ride pickup at office. Not critical—customer can enter address manually during ride booking. Saves 30 seconds. No impact if missing. |
+| **Secondary Email Addresses** | Text | 255 chars | Backup email for confirmations. Useful if primary email account has issues or customer wants work+personal copies. | **Redundancy only** - Primary email sufficient for 99% of travel needs. Secondary useful if primary goes down (rare). Customer can add CC address during booking if needed. Nice-to-have redundancy but not necessary. |
+| **Additional Phone Numbers** | Text | 60 chars | Work phone, home phone, fax (legacy). Backup contact methods if primary mobile unavailable. | **Legacy/redundancy** - Most communication now via mobile. Work phone rarely needed (calls go to mobile). Fax obsolete. Pager obsolete. Minimal value—primary mobile handles 99% of contact needs. |
 
 ### Additional Travel Documents
-- **Driver's License Number** (Text, 200 chars)
-- **Driver's License Issuing Country/State** (Choice, 2-letter ISO / Text, 30 chars)
-- **Driver's License Expiration Date** (Date, YYYY-MM-DD)
-- **National ID Document Number** (Text, 200 chars sync limit)
+
+| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Driver's License Number** | Text | 200 chars | Required only for car rentals. Can be provided at rental counter if missing from profile. | **Car rental convenience** - Pre-fills driver's license at booking, saves 1 minute. If missing, customer provides at rental counter (standard process). No blocking impact—just slower counter experience. |
+| **Driver's License Issuing Country/State** | Choice/Text | 2/30 chars | Validates license legitimacy for international car rentals. Some countries don't accept licenses from others. | **International rental validation** - Helps detect if International Driving Permit (IDP) needed. If missing, customer may discover at counter (delays pickup 30+ min while getting IDP). Rare issue—US/EU licenses widely accepted. |
+| **Driver's License Expiration Date** | Date | YYYY-MM-DD | Car rental companies reject expired licenses. Pre-validation prevents counter rejection. | **Rental denial prevention** - If license expired, car rental denies vehicle (customer stranded). Proactive check saves trip failure but customer can also check manually. Helpful but not critical for most users. |
+| **National ID Document Number** | Text | 200 chars | Alternative to passport for some domestic/regional travel (EU internal flights, domestic Brazil, etc.). | **Regional convenience** - EU citizens can use national ID instead of passport for Schengen travel (lighter, easier). If missing, passport still works—no blocking impact. Convenience for frequent regional travelers only. |
 
 ### Rate Preferences
-- **AAA Rate** (Yes/No) - AAA member discounts
-- **AARP Rate** (Yes/No) - Senior discounts
-- **Government Rate** (Yes/No) - Government employee rates
-- **Military Rate** (Yes/No) - Military/veteran rates
+
+| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **AAA Rate** | Yes/No | — | Discount rate (10-15%) for AAA members at hotels and car rentals. Requires showing AAA card at check-in. | **Modest savings** - Saves $10-30 per hotel night. Customer must remember to request AAA rate and show card at check-in. If missing from profile, customer can request rate manually during booking. Helpful savings but not mandatory. |
+| **AARP Rate** | Yes/No | — | Senior discount (10-20%) for AARP members (50+ years old). Common at hotels and car rentals. | **Senior savings** - Saves $15-40 per night for eligible travelers. Must show AARP card at check-in. If missing, customer requests rate manually. Nice discount but not required for booking. |
+| **Government Rate** | Yes/No | — | Special government employee rates at hotels (up to 30% discount). Requires showing government ID at check-in. | **Significant savings** - Government rates can be 30%+ cheaper. Hotels set aside inventory for government travelers. Must verify eligibility at check-in (government ID). If missing, customer can request manually but inventory may be sold out. |
+| **Military Rate** | Yes/No | — | Military/veteran discount at hotels, car rentals, airlines (10-25% savings). Requires military ID verification. | **Honor and savings** - Rewards military service with meaningful discounts. Must show military/veteran ID at check-in. If missing from profile, customer can request rate manually. Helpful but not blocking. |
 
 ### Rail-Specific Preferences
-- **Rail Seat** (Choice: Aisle, Window, DontCare)
-- **Rail Coach Type** (Choice: Coach, CoachWithTable, Compartment, DontCare)
-- **Rail Noise Comfort** (Choice: QuietSpace, MobileSpace, DontCare)
-- **BahnCard Type** (Choice: Card25, Card50, Card100, Business25, Business50, NA) - Deutsche Bahn only
-- **BahnCard Class** (Choice: First, Second, NA)
+
+| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Rail Seat** | Choice | — | Aisle vs. window preference for rail travel. Less critical than air travel since trains have more movement freedom. | **Minor comfort** - Nice to have preferred seat but customer can move around on train (unlike plane). If missing, customer selects during booking or accepts assigned seat. Lower impact than flight seating. |
+| **Rail Coach Type** | Choice | — | Quiet car, table seating, compartment, or standard coach. Affects comfort for long journeys. | **Comfort preference** - Quiet car nice for work/sleep on long trips. Table seating good for groups. If missing, customer gets standard coach (acceptable for most). Can upgrade on board if available. |
+| **Rail Noise Comfort** | Choice | — | Quiet zone vs. mobile phone allowed zones. European trains often have designated quiet carriages. | **Comfort preference** - Quiet zone provides peaceful work environment. Mobile zone allows calls. If missing, customer assigned to standard car (moderate noise). Can move between cars if needed. |
+| **BahnCard Type** | Choice | — | Deutsche Bahn discount card (25%, 50%, or 100% off). Significant savings for frequent German rail travelers. | **Major savings for frequent travelers** - BahnCard 50 saves 50% on every German rail ticket. BahnCard 100 = unlimited travel. If missing, customer pays full price (can manually enter discount card at booking). Critical for frequent Germany travelers but niche globally. |
+| **BahnCard Class** | Choice | — | First class vs. second class BahnCard. Determines which class receives discount. | **Discount application** - Ensures discount applied to correct class. If missing, discount may apply to wrong class (customer pays more or gets downgraded). Can correct at booking but requires attention. |
 
 ### Hotel Amenities
-- **Prefer Foam Pillows** (Yes/No)
-- **Prefer Crib** (Yes/No)
-- **Prefer Rollaway Bed** (Yes/No)
-- **Prefer Gym** (Yes/No)
-- **Prefer Pool** (Yes/No)
-- **Prefer Restaurant** (Yes/No)
-- **Prefer Room Service** (Yes/No)
-- **Prefer Early Check-In** (Yes/No)
-- **Prefer Wheelchair Access** (Yes/No)
-- **Prefer Access for Blind** (Yes/No)
+
+| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Prefer Foam Pillows** | Yes/No | — | Special pillow request for sleep comfort or allergies. Hotels provide on request at check-in. | **Minor comfort** - Improves sleep quality for some guests (allergies, neck support). If missing, customer requests at check-in (usually available). Not guaranteed—depends on hotel inventory. Low impact for most travelers. |
+| **Prefer Crib** | Yes/No | — | Baby crib for families traveling with infants. Standard hotel accommodation for families. | **Family convenience** - Hotels provide cribs for free on request. If missing from profile, parent requests at check-in (always available unless hotel fully booked). Minor convenience—parents remember to ask anyway. |
+| **Prefer Rollaway Bed** | Yes/No | — | Extra bed for families or groups. Subject to room size and hotel availability. | **Extra guest accommodation** - Allows extra person in room (saves booking second room). If missing, customer requests at check-in ($20-50 fee). May not be available if hotel busy. Helpful but customer can handle ad-hoc. |
+| **Prefer Gym** | Yes/No | — | Filters hotel search to properties with fitness centers. Important for fitness-conscious travelers. | **Fitness routine maintenance** - Helps travelers maintain workout routine during travel. If missing, customer can filter manually during search or use nearby gym. Convenience preference but not critical. |
+| **Prefer Pool** | Yes/No | — | Filters hotels with swimming pools. Relevant for leisure travelers, families, or fitness swimmers. | **Leisure/fitness preference** - Nice for relaxation or exercise. If missing, customer can filter manually during booking. More relevant for leisure travel than business. Low impact for most business travelers. |
+| **Prefer Restaurant** | Yes/No | — | On-site restaurant for convenience (breakfast, room service). Helpful when arriving late or in remote areas. | **Convenience** - Saves time finding nearby food (especially late arrivals). If missing, customer can filter manually or use delivery/nearby restaurants. Helpful but workarounds exist easily. |
+| **Prefer Room Service** | Yes/No | — | In-room dining for convenience or privacy. Common for business travelers working late. | **Convenience** - Enables working through dinner in room. If missing, customer orders from restaurant or delivery. Nice-to-have but not necessary—alternatives readily available. |
+| **Prefer Early Check-In** | Yes/No | — | Request early check-in (before standard 3 PM). Useful for early morning arrivals from overnight flights. | **Convenience after long flight** - Allows immediate rest after overnight international flight. If missing, customer requests at check-in (subject to availability, often $50 fee). Can wait in lobby if room not ready. |
+| **Prefer Wheelchair Access** | Yes/No | — | ADA-compliant room with wheelchair accessibility. Critical for disabled travelers but covered under legal requirements. | **Accessibility requirement** - Hotels legally required to provide accessible rooms under ADA. If missing from profile, customer requests at booking or check-in (usually available). Should be in "Recommended" for affected travelers but optional for general population. |
+| **Prefer Access for Blind** | Yes/No | — | Rooms with visual accessibility features (Braille signage, audio alerts, etc.). | **Accessibility requirement** - Hotels provide accessible features on request. If missing, customer requests at check-in. Limited inventory—advance notice helpful. Should be "Recommended" for visually impaired travelers. |
 
 ### Car Rental Add-Ons
-- **GPS** (Yes/No)
-- **Ski Rack** (Yes/No)
-- **Car Smoking Preference** (Choice: NonSmoking, Smoking, DontCare)
+
+| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **GPS** | Yes/No | — | Rental car GPS navigation system. Less relevant in smartphone era (Google Maps, Waze). | **Legacy convenience** - GPS units useful before smartphones. Now most travelers use phone navigation (free, better, real-time traffic). Rental GPS adds $10-15/day (expensive). If missing, customer uses phone—better solution anyway. |
+| **Ski Rack** | Yes/No | — | Roof-mounted ski rack for winter sports trips. Niche use case for specific destinations. | **Niche equipment** - Only relevant for ski trips. If missing, customer rents rack at car counter ($20-30) or checks skis at airline. Very specific use case—not relevant for 95%+ of rentals. |
+| **Car Smoking Preference** | Yes/No | — | Smoking vs. non-smoking rental car. Most rental fleets now entirely non-smoking due to health regulations. | **Obsolete preference** - Nearly all rental cars non-smoking now (cleaning costs, regulations). Smoking in non-smoking car = $200-500 cleaning fee. If customer smokes, must do so outside vehicle. Low relevance today. |
 
 ### Payment Card Defaults
-- **Default Card for Air** (Yes/No)
-- **Default Card for Car** (Yes/No)
-- **Default Card for Hotel** (Yes/No)
-- **Default Card for Rail** (Yes/No)
-- **Default Card for Taxi** (Yes/No)
+
+| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Default Card for Air** | Yes/No | — | Automatically selects preferred card for flight bookings. Prevents accidental use of wrong card. | **Convenience** - Saves selecting card from dropdown every time. If missing, customer selects card manually (5 seconds). Helpful for frequent travelers with multiple cards but low impact. |
+| **Default Card for Car** | Yes/No | — | Pre-selects preferred card for car rentals. | **Convenience** - Auto-fills payment at checkout. If missing, customer selects manually. Minor time savings only. |
+| **Default Card for Hotel** | Yes/No | — | Pre-selects preferred card for hotel bookings. | **Convenience** - Auto-fills payment at checkout. If missing, customer selects manually. Minor time savings only. |
+| **Default Card for Rail** | Yes/No | — | Pre-selects preferred card for rail bookings. | **Convenience** - Auto-fills payment at checkout. If missing, customer selects manually. Minor time savings only. |
+| **Default Card for Taxi** | Yes/No | — | Pre-selects preferred card for ground transportation and ride-shares. | **Convenience** - Auto-fills payment at checkout. If missing, customer selects manually. Minor time savings only. Ride apps (Uber/Lyft) have own payment methods. |
 
 ### Preferences & Settings
-- **Preferred Language** (Choice, BCP 47 format) - e.g., en-US, de-DE, fr-FR
-- **Country Code** (Choice, 2-letter ISO) - Home country
-- **eReceipt Opt-In** (Yes/No) - Electronic receipts
+
+| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
+|------------|------|------------|--------------|------------------------------|
+| **Preferred Language** | Choice (BCP 47) | 20 chars | UI display language for Concur interface. Defaults to browser/system language if missing. | **Localization preference** - Customer sees interface in preferred language. If missing, system detects from browser (works for 90% of users). Helpful for multilingual users who want specific language regardless of location. Minor convenience. |
+| **Country Code** | Choice | 2-letter ISO | Traveler's home country for default currency, tax calculations, policy assignment. | **System defaults** - Used for currency display, tax forms, regional policy application. If missing, system infers from company location or login IP. Mostly invisible to customer—backend setting. |
+| **eReceipt Opt-In** | Yes/No | — | Receive electronic receipts via email instead of paper. Environmental preference and convenience. | **Paperless convenience** - Email receipts easier to organize than paper. Searchable, automatically archived. If missing, customer gets paper receipts (must scan manually for expense reports—extra work). eReceipts significantly faster for expense submission. Should arguably be "Recommended" for productivity.
 
 ---
 
