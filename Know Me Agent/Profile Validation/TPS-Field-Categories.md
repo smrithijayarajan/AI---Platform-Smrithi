@@ -2,6 +2,15 @@
 
 Based on Travel Profile Service field details, this document categorizes profile fields by their importance for booking scenarios.
 
+**Note:** Travel preferences, rate preferences, rail preferences, hotel amenities, car rental add-ons, and behavioral intelligence have been moved to:
+→ [Preferences and Behavioral Intelligence](../Preferences%20and%20Behavioral%20Intelligence/Preference-Fields-and-Learning.md)
+
+This document focuses on:
+- ✅ **Required fields** - Identity, travel documents (passport, visa)
+- ✅ **Critical non-blocking fields** - Contact information (email, phone)
+- ✅ **Recommended fields** - TSA/Trusted Traveler, loyalty programs, emergency contacts
+- ✅ **Optional fields** - Personal information, work/organization, additional documents
+
 ---
 
 ## **REQUIRED Fields for Booking**
@@ -56,27 +65,6 @@ Based on Travel Profile Service field details, this document categorizes profile
 | **Hotel Loyalty Account Number** | Text | 60 chars | Earns hotel points (Marriott Bonvoy, Hilton Honors) for every stay. Points redeem for free nights, upgrades. Elite status provides free breakfast, room upgrades, late checkout. | **Lost value: $100-300+ per stay** - Customer loses free night credits, upgrades, elite benefits (free breakfast worth $30/day). Must pay for upgrades that would be free with status. Cannot accumulate points toward vacation stays. |
 | **Car Rental Loyalty Account Number** | Text | 60 chars | Earns rental credits, enables faster pickup (skip counter line), provides upgrade eligibility, and insurance benefits. | **Lost time and perks** - Customer waits in 20+ min line at rental counter. Loses free upgrade opportunities. Must fill out paperwork every time. No loyalty discounts or insurance benefits applied. |
 | **Rail Loyalty Account Number** | Text | 60 chars | For frequent rail travelers (Amtrak, European rail operators). Earns points toward free trips, discounts, priority booking. | **Lost rewards: $50-200+ per trip** - Customer loses points/discounts on frequent rail travel. Must pay full price for future trips instead of redeeming free travel earned through loyalty. |
-
-### Contact Information
-
-| Field Name | Type | Max Length | Why Recommended | Impact on Customer Experience |
-|------------|------|------------|-----------------|------------------------------|
-| **Primary Email Address** | Text (ASCII) | 255 chars | All booking confirmations, itinerary updates, boarding passes, hotel confirmations sent via email. Only reliable way to receive travel documents. | **Lost confirmations and itineraries** - Customer doesn't receive booking confirmation number, boarding pass, hotel address. Must call customer service (30+ min wait) to get confirmation. Risk of missed check-in deadline. Cannot access mobile boarding pass—forced to print at airport. |
-| **Primary Mobile Phone Number** | Text | 60 chars | Enables SMS flight alerts (delays, cancellations, gate changes), TextApp receipt submission, hotel check-in notifications, ride-share pickup coordination. | **Missed critical alerts** - Customer unaware of 3-hour flight delay until arrival at airport. Misses gate change, boards wrong flight. Cannot use TextApp to submit receipts (must save paper, manual upload). No SMS confirmation for hotel/car pickup. Adds stress and wasted time. |
-| **Phone Country Code** | Choice | 2-letter ISO | Ensures SMS/calls reach correct international phone number format. Prevents messages sent to wrong country code. | **Communication failure** - Airline sends SMS alerts to wrong number (e.g., assumes US +1 instead of UK +44). Customer misses flight delay notification. Hotel cannot reach customer for late check-in issues. |
-
-### Travel Preferences (Pre-fill Booking Requests)
-
-| Field Name | Type | Max Length | Why Recommended | Impact on Customer Experience |
-|------------|------|------------|-----------------|------------------------------|
-| **Home Airport** | Text (IATA) | 3 chars | Pre-fills departure airport in search, saving time. AI agents recommend flights from preferred airport automatically. | **Saves 30+ seconds per search** - Customer doesn't manually type airport every time. Prevents accidental bookings from wrong airport (e.g., searches SFO but lives near OAK). Reduces booking errors and frustration. |
-| **Air Seat Position (Row)** | Choice | — | Auto-selects aisle/window seat during booking. Ensures comfort preference honored without manual seat map navigation. | **Prevents uncomfortable flights** - Customer forgets to select seat, gets stuck in middle seat on 6-hour flight (extremely uncomfortable). Aisle preference for frequent bathroom needs, window for sleeping. Auto-selection ensures preferred experience every time. |
-| **Air Seat Position (Section)** | Choice | — | Selects preferred cabin location (exit row for legroom, forward for quick deplaning, rear for quieter). | **Comfort and convenience** - Customer stuck in back row (loud engines, slow deplaning—extra 20 min wait). Exit row gives 4+ inches extra legroom critical for tall travelers. Forward section deplanes first, saving time at destination. |
-| **Air Meal Preference** | Choice | — | Pre-orders special meals (vegetarian, kosher, gluten-free, diabetic). Airlines require 24-72 hours advance notice. | **No suitable meal on flight** - Customer with dietary restriction (vegetarian, allergic to gluten) has no meal option on international flight (10+ hours). Must go hungry or risk allergic reaction. Last-minute special meal requests often declined—too late to fulfill. |
-| **Hotel Room Type** | Choice | — | Pre-selects king bed, double queen, accessibility room. Ensures room type availability at time of booking. | **Wrong room type at check-in** - Customer arrives at hotel requesting king bed but only double queens available (uncomfortable for couples). Accessibility rooms unavailable for disabled travelers. Must accept unsuitable room or find different hotel (time lost, higher prices). |
-| **Hotel Smoking Preference** | Choice | — | Ensures non-smoking room assignment. Smoking rooms smell strongly of cigarette smoke even when unoccupied. | **Health and comfort issue** - Non-smoking customer assigned smoking room, cannot sleep due to smell/allergies. Hotel fully booked, cannot switch rooms. Ruins entire stay. Must pay for room despite unusable conditions. |
-| **Car Type Preference** | Choice | — | Pre-selects car size (compact for city, SUV for family/luggage). Ensures availability and avoids mismatches. | **Wrong vehicle for needs** - Customer books compact car, arrives with 4 colleagues + luggage (doesn't fit). Must upgrade on-site at 2-3× price or make multiple trips. SUV needed for winter mountain roads but compact provided—unsafe driving conditions. |
-| **Car Transmission** | Choice | — | Critical for international travel where manual transmission is standard. US drivers unfamiliar with manual cannot drive safely. | **Cannot drive rental car** - Customer cannot drive manual transmission, rental counter has no automatics available (common in Europe). Stranded at airport, forced to pay premium for automatic or cancel plans. Safety risk if attempts manual without experience. |
 
 ### International Travel - RECOMMENDED
 
@@ -138,48 +126,6 @@ Based on Travel Profile Service field details, this document categorizes profile
 | **Driver's License Expiration Date** | Date | YYYY-MM-DD | Car rental companies reject expired licenses. Pre-validation prevents counter rejection. | **Rental denial prevention** - If license expired, car rental denies vehicle (customer stranded). Proactive check saves trip failure but customer can also check manually. Helpful but not critical for most users. |
 | **National ID Document Number** | Text | 200 chars | Alternative to passport for some domestic/regional travel (EU internal flights, domestic Brazil, etc.). | **Regional convenience** - EU citizens can use national ID instead of passport for Schengen travel (lighter, easier). If missing, passport still works—no blocking impact. Convenience for frequent regional travelers only. |
 
-### Rate Preferences
-
-| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
-|------------|------|------------|--------------|------------------------------|
-| **AAA Rate** | Yes/No | — | Discount rate (10-15%) for AAA members at hotels and car rentals. Requires showing AAA card at check-in. | **Modest savings** - Saves $10-30 per hotel night. Customer must remember to request AAA rate and show card at check-in. If missing from profile, customer can request rate manually during booking. Helpful savings but not mandatory. |
-| **AARP Rate** | Yes/No | — | Senior discount (10-20%) for AARP members (50+ years old). Common at hotels and car rentals. | **Senior savings** - Saves $15-40 per night for eligible travelers. Must show AARP card at check-in. If missing, customer requests rate manually. Nice discount but not required for booking. |
-| **Government Rate** | Yes/No | — | Special government employee rates at hotels (up to 30% discount). Requires showing government ID at check-in. | **Significant savings** - Government rates can be 30%+ cheaper. Hotels set aside inventory for government travelers. Must verify eligibility at check-in (government ID). If missing, customer can request manually but inventory may be sold out. |
-| **Military Rate** | Yes/No | — | Military/veteran discount at hotels, car rentals, airlines (10-25% savings). Requires military ID verification. | **Honor and savings** - Rewards military service with meaningful discounts. Must show military/veteran ID at check-in. If missing from profile, customer can request rate manually. Helpful but not blocking. |
-
-### Rail-Specific Preferences
-
-| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
-|------------|------|------------|--------------|------------------------------|
-| **Rail Seat** | Choice | — | Aisle vs. window preference for rail travel. Less critical than air travel since trains have more movement freedom. | **Minor comfort** - Nice to have preferred seat but customer can move around on train (unlike plane). If missing, customer selects during booking or accepts assigned seat. Lower impact than flight seating. |
-| **Rail Coach Type** | Choice | — | Quiet car, table seating, compartment, or standard coach. Affects comfort for long journeys. | **Comfort preference** - Quiet car nice for work/sleep on long trips. Table seating good for groups. If missing, customer gets standard coach (acceptable for most). Can upgrade on board if available. |
-| **Rail Noise Comfort** | Choice | — | Quiet zone vs. mobile phone allowed zones. European trains often have designated quiet carriages. | **Comfort preference** - Quiet zone provides peaceful work environment. Mobile zone allows calls. If missing, customer assigned to standard car (moderate noise). Can move between cars if needed. |
-| **BahnCard Type** | Choice | — | Deutsche Bahn discount card (25%, 50%, or 100% off). Significant savings for frequent German rail travelers. | **Major savings for frequent travelers** - BahnCard 50 saves 50% on every German rail ticket. BahnCard 100 = unlimited travel. If missing, customer pays full price (can manually enter discount card at booking). Critical for frequent Germany travelers but niche globally. |
-| **BahnCard Class** | Choice | — | First class vs. second class BahnCard. Determines which class receives discount. | **Discount application** - Ensures discount applied to correct class. If missing, discount may apply to wrong class (customer pays more or gets downgraded). Can correct at booking but requires attention. |
-
-### Hotel Amenities
-
-| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
-|------------|------|------------|--------------|------------------------------|
-| **Prefer Foam Pillows** | Yes/No | — | Special pillow request for sleep comfort or allergies. Hotels provide on request at check-in. | **Minor comfort** - Improves sleep quality for some guests (allergies, neck support). If missing, customer requests at check-in (usually available). Not guaranteed—depends on hotel inventory. Low impact for most travelers. |
-| **Prefer Crib** | Yes/No | — | Baby crib for families traveling with infants. Standard hotel accommodation for families. | **Family convenience** - Hotels provide cribs for free on request. If missing from profile, parent requests at check-in (always available unless hotel fully booked). Minor convenience—parents remember to ask anyway. |
-| **Prefer Rollaway Bed** | Yes/No | — | Extra bed for families or groups. Subject to room size and hotel availability. | **Extra guest accommodation** - Allows extra person in room (saves booking second room). If missing, customer requests at check-in ($20-50 fee). May not be available if hotel busy. Helpful but customer can handle ad-hoc. |
-| **Prefer Gym** | Yes/No | — | Filters hotel search to properties with fitness centers. Important for fitness-conscious travelers. | **Fitness routine maintenance** - Helps travelers maintain workout routine during travel. If missing, customer can filter manually during search or use nearby gym. Convenience preference but not critical. |
-| **Prefer Pool** | Yes/No | — | Filters hotels with swimming pools. Relevant for leisure travelers, families, or fitness swimmers. | **Leisure/fitness preference** - Nice for relaxation or exercise. If missing, customer can filter manually during booking. More relevant for leisure travel than business. Low impact for most business travelers. |
-| **Prefer Restaurant** | Yes/No | — | On-site restaurant for convenience (breakfast, room service). Helpful when arriving late or in remote areas. | **Convenience** - Saves time finding nearby food (especially late arrivals). If missing, customer can filter manually or use delivery/nearby restaurants. Helpful but workarounds exist easily. |
-| **Prefer Room Service** | Yes/No | — | In-room dining for convenience or privacy. Common for business travelers working late. | **Convenience** - Enables working through dinner in room. If missing, customer orders from restaurant or delivery. Nice-to-have but not necessary—alternatives readily available. |
-| **Prefer Early Check-In** | Yes/No | — | Request early check-in (before standard 3 PM). Useful for early morning arrivals from overnight flights. | **Convenience after long flight** - Allows immediate rest after overnight international flight. If missing, customer requests at check-in (subject to availability, often $50 fee). Can wait in lobby if room not ready. |
-| **Prefer Wheelchair Access** | Yes/No | — | ADA-compliant room with wheelchair accessibility. Critical for disabled travelers but covered under legal requirements. | **Accessibility requirement** - Hotels legally required to provide accessible rooms under ADA. If missing from profile, customer requests at booking or check-in (usually available). Should be in "Recommended" for affected travelers but optional for general population. |
-| **Prefer Access for Blind** | Yes/No | — | Rooms with visual accessibility features (Braille signage, audio alerts, etc.). | **Accessibility requirement** - Hotels provide accessible features on request. If missing, customer requests at check-in. Limited inventory—advance notice helpful. Should be "Recommended" for visually impaired travelers. |
-
-### Car Rental Add-Ons
-
-| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
-|------------|------|------------|--------------|------------------------------|
-| **GPS** | Yes/No | — | Rental car GPS navigation system. Less relevant in smartphone era (Google Maps, Waze). | **Legacy convenience** - GPS units useful before smartphones. Now most travelers use phone navigation (free, better, real-time traffic). Rental GPS adds $10-15/day (expensive). If missing, customer uses phone—better solution anyway. |
-| **Ski Rack** | Yes/No | — | Roof-mounted ski rack for winter sports trips. Niche use case for specific destinations. | **Niche equipment** - Only relevant for ski trips. If missing, customer rents rack at car counter ($20-30) or checks skis at airline. Very specific use case—not relevant for 95%+ of rentals. |
-| **Car Smoking Preference** | Yes/No | — | Smoking vs. non-smoking rental car. Most rental fleets now entirely non-smoking due to health regulations. | **Obsolete preference** - Nearly all rental cars non-smoking now (cleaning costs, regulations). Smoking in non-smoking car = $200-500 cleaning fee. If customer smokes, must do so outside vehicle. Low relevance today. |
-
 ### Payment Card Defaults
 
 | Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
@@ -189,16 +135,6 @@ Based on Travel Profile Service field details, this document categorizes profile
 | **Default Card for Hotel** | Yes/No | — | Pre-selects preferred card for hotel bookings. | **Convenience** - Auto-fills payment selection at checkout. If missing, customer selects manually. Minor time savings only. |
 | **Default Card for Rail** | Yes/No | — | Pre-selects preferred card for rail bookings. | **Convenience** - Auto-fills payment selection at checkout. If missing, customer selects manually. Minor time savings only. |
 | **Default Card for Taxi** | Yes/No | — | Pre-selects preferred card for ground transportation and ride-shares. | **Convenience** - Auto-fills payment selection at checkout. If missing, customer selects manually. Minor time savings only. Ride apps (Uber/Lyft) have own payment methods. |
-
-### Preferences & Settings
-
-| Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
-|------------|------|------------|--------------|------------------------------|
-| **Preferred Language** | Choice (BCP 47) | 20 chars | UI display language for Concur interface. Defaults to browser/system language if missing. | **Localization preference** - Customer sees interface in preferred language. If missing, system detects from browser (works for 90% of users). Helpful for multilingual users who want specific language regardless of location. Minor convenience. |
-| **Country Code** | Choice | 2-letter ISO | Traveler's home country for default currency, tax calculations, policy assignment. | **System defaults** - Used for currency display, tax forms, regional policy application. If missing, system infers from company location or login IP. Mostly invisible to customer—backend setting. |
-| **eReceipt Opt-In** | Yes/No | — | Receive electronic receipts via email instead of paper. Environmental preference and convenience. | **Paperless convenience** - Email receipts easier to organize than paper. Searchable, automatically archived. If missing, customer gets paper receipts (must scan manually for expense reports—extra work). eReceipts significantly faster for expense submission. Should arguably be "Recommended" for productivity.
-
----
 
 ## **Summary by Booking Scenario**
 
