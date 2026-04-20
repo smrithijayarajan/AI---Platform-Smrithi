@@ -24,16 +24,6 @@ Based on Travel Profile Service field details, this document categorizes profile
 | **Passport Expiration Date** | Date | YYYY-MM-DD | Most countries require passport validity 6+ months beyond travel dates. Airlines check this before boarding to avoid fines for transporting passengers who will be denied entry. | **Denied boarding** - Customer arrives at airport and is turned away if passport expires too soon. Loses entire trip cost. No rebooking possible without passport renewal. |
 | **Middle Name** | Text | 60 chars | Required by some airlines (especially for international flights) to match passport exactly. US TSA Secure Flight program requires exact name match. | **Booking rejection or flight delay** - If name on ticket doesn't match passport middle name, customer faces re-ticketing fees ($200+) or denied boarding. Must arrive extra early to resolve at airport. |
 
-### Payment - REQUIRED
-
-| Field Name | Type | Max Length | Why Required | Impact on Customer Experience |
-|------------|------|------------|--------------|------------------------------|
-| **Credit Card Account Number** | Text (ASCII) | 150 chars | All travel bookings require payment guarantee. Hotels/car rentals hold deposit. Airlines charge at time of booking. | **Complete booking failure** - Cannot reserve flight, hotel, or car without payment method. Customer stuck in booking flow, forced to exit and find payment card. Lost time and frustration. |
-| **Card Vendor** | Choice | — | Payment processors route transactions differently based on card network (Visa, Mastercard, Amex). Some suppliers don't accept certain card types (e.g., Amex not accepted everywhere). | **Payment failure at checkout** - Customer thinks booking is complete but payment declines due to unsupported card type. Must restart entire booking process. Hotel/flight price may increase during delay. |
-| **Name on Card** | Text | 255 chars | Fraud prevention - card name must match traveler or corporate cardholder. Hotels/car rentals verify card at check-in. | **Declined at check-in** - Hotel or car rental desk rejects card if name doesn't match reservation. Customer stranded without accommodation or transportation. Must provide alternate payment on-site. |
-| **Card Expiration Date** | Date | YYYY-MM-DD | Payment authorization requires valid card. Expired cards are declined immediately. Future bookings fail if card expires before travel date. | **Payment decline** - Booking fails at checkout if card is expired. For future-dated trips, customer may complete booking but payment fails later when supplier charges card, causing automatic cancellation without warning. |
-| **Credit Card Display Name** | Text | 255 chars | Helps customer identify which card is being used (e.g., "Corporate Amex", "Personal Visa"). Prevents accidental use of personal card for business travel. | **Expense violation** - Customer accidentally books with wrong card type, causing expense report rejection and out-of-pocket reimbursement delays. May violate company policy, requiring manager approval or personal payment. |
-
 ---
 
 ## **RECOMMENDED Fields for Enhanced Experience**
@@ -194,11 +184,11 @@ Based on Travel Profile Service field details, this document categorizes profile
 
 | Field Name | Type | Max Length | Why Optional | Impact on Customer Experience |
 |------------|------|------------|--------------|------------------------------|
-| **Default Card for Air** | Yes/No | — | Automatically selects preferred card for flight bookings. Prevents accidental use of wrong card. | **Convenience** - Saves selecting card from dropdown every time. If missing, customer selects card manually (5 seconds). Helpful for frequent travelers with multiple cards but low impact. |
-| **Default Card for Car** | Yes/No | — | Pre-selects preferred card for car rentals. | **Convenience** - Auto-fills payment at checkout. If missing, customer selects manually. Minor time savings only. |
-| **Default Card for Hotel** | Yes/No | — | Pre-selects preferred card for hotel bookings. | **Convenience** - Auto-fills payment at checkout. If missing, customer selects manually. Minor time savings only. |
-| **Default Card for Rail** | Yes/No | — | Pre-selects preferred card for rail bookings. | **Convenience** - Auto-fills payment at checkout. If missing, customer selects manually. Minor time savings only. |
-| **Default Card for Taxi** | Yes/No | — | Pre-selects preferred card for ground transportation and ride-shares. | **Convenience** - Auto-fills payment at checkout. If missing, customer selects manually. Minor time savings only. Ride apps (Uber/Lyft) have own payment methods. |
+| **Default Card for Air** | Yes/No | — | Pre-selects preferred payment card for flight bookings. Prevents accidental use of wrong card. | **Convenience** - Saves selecting card from dropdown every time. If missing, customer selects card manually (5 seconds). Helpful for frequent travelers with multiple cards but low impact. Note: Payment card data itself is managed separately by payment systems, not stored in travel profile. |
+| **Default Card for Car** | Yes/No | — | Pre-selects preferred card for car rentals. | **Convenience** - Auto-fills payment selection at checkout. If missing, customer selects manually. Minor time savings only. |
+| **Default Card for Hotel** | Yes/No | — | Pre-selects preferred card for hotel bookings. | **Convenience** - Auto-fills payment selection at checkout. If missing, customer selects manually. Minor time savings only. |
+| **Default Card for Rail** | Yes/No | — | Pre-selects preferred card for rail bookings. | **Convenience** - Auto-fills payment selection at checkout. If missing, customer selects manually. Minor time savings only. |
+| **Default Card for Taxi** | Yes/No | — | Pre-selects preferred card for ground transportation and ride-shares. | **Convenience** - Auto-fills payment selection at checkout. If missing, customer selects manually. Minor time savings only. Ride apps (Uber/Lyft) have own payment methods. |
 
 ### Preferences & Settings
 
@@ -213,28 +203,33 @@ Based on Travel Profile Service field details, this document categorizes profile
 ## **Summary by Booking Scenario**
 
 ### Domestic Flight (US)
-**Required:** Travel CRS Name, First Name, Last Name, Payment Card
-**Recommended:** TSA PreCheck KTN, Airline Loyalty Number, Email, Mobile Phone, Seat Preferences
+**Required:** Travel CRS Name, First Name, Last Name
+**Critical (Non-Blocking):** Email, Mobile Phone
+**Recommended:** TSA PreCheck KTN, Airline Loyalty Number, Seat Preferences
 **Optional:** Meal Preference, Special Assistance
 
 ### International Flight
-**Required:** Travel CRS Name, First Name, Last Name, Middle Name, Passport Number, Passport Expiration, Passport Issuing Country, Nationality, Payment Card
-**Recommended:** Visa (if applicable), TSA PreCheck, Airline Loyalty, Email, Mobile Phone
+**Required:** Travel CRS Name, First Name, Last Name, Middle Name, Passport Number, Passport Expiration, Passport Issuing Country, Nationality
+**Critical (Non-Blocking):** Email, Mobile Phone, Phone Country Code
+**Recommended:** Visa (if applicable), TSA PreCheck, Airline Loyalty
 **Optional:** Emergency Contact, Medical Alerts
 
 ### Hotel Booking
-**Required:** First Name, Last Name, Payment Card
-**Recommended:** Hotel Loyalty Number, Email, Mobile Phone, Room Type Preference, Smoking Preference
+**Required:** First Name, Last Name
+**Critical (Non-Blocking):** Email, Mobile Phone
+**Recommended:** Hotel Loyalty Number, Room Type Preference, Smoking Preference
 **Optional:** Amenity Preferences (gym, pool, crib, etc.)
 
 ### Car Rental
-**Required:** First Name, Last Name, Payment Card, Driver's License Number
-**Recommended:** Car Loyalty Number, Email, Mobile Phone, Car Type Preference, Transmission
+**Required:** First Name, Last Name, Driver's License Number
+**Critical (Non-Blocking):** Email, Mobile Phone
+**Recommended:** Car Loyalty Number, Car Type Preference, Transmission
 **Optional:** GPS, Ski Rack
 
 ### Rail Booking (Europe)
-**Required:** First Name, Last Name, Payment Card
-**Recommended:** Rail Loyalty Number, BahnCard (for Deutsche Bahn), Email, Seat Preferences
+**Required:** First Name, Last Name
+**Critical (Non-Blocking):** Email, Mobile Phone
+**Recommended:** Rail Loyalty Number, BahnCard (for Deutsche Bahn), Seat Preferences
 **Optional:** Coach Type, Meal Preference, Special Assistance
 
 ---
@@ -243,7 +238,6 @@ Based on Travel Profile Service field details, this document categorizes profile
 
 ### Blocking Validations (Prevent Booking)
 - International flight without passport number/expiration
-- Any booking without payment card
 - Missing Travel CRS Name or legal name fields
 
 ### Critical Non-Blocking Validations (Allow Booking, Strong Warning) ⚠️
@@ -267,7 +261,6 @@ Based on Travel Profile Service field details, this document categorizes profile
 - Passport expires within 6 months of travel date (many countries require 6-month validity)
 - Visa expiration before return date
 - Driver's license expired for car rental
-- Credit card expires before travel date
 
 ### Recommended Validations (Suggest but Don't Block)
 - Missing TSA PreCheck for US domestic flights (suggest adding to save time)
@@ -285,7 +278,6 @@ Know Me validates:
 ✓ Passport Nationality: US
 ✓ Passport Issuing Country: US
 ⚠ Passport Expiration: 2026-08-15 (expires in 4 months - warn about 6-month rule)
-✓ Payment Card: ending in 1234, expires 12/2027
 ✗ Middle Name: Missing (required by airline for international - BLOCK)
 
 Prompt: "I need your middle name to complete this international booking. Airlines require it to match your passport exactly."
@@ -295,7 +287,6 @@ Prompt: "I need your middle name to complete this international booking. Airline
 ```
 Know Me validates:
 ✓ Travel CRS Name: FREDERICKS/FRED
-✓ Payment Card: ending in 1234
 ⚠ TSA PreCheck: Not enrolled (recommend)
 ⚠️ CRITICAL - Email: Missing (strongly recommend - cannot receive alerts)
 ⚠️ CRITICAL - Mobile Phone: Missing (strongly recommend - cannot receive gate changes)
@@ -313,7 +304,7 @@ Would you like to add your contact info now, or proceed without it? (Not recomme
 **Scenario: Fred books international flight without contact info**
 ```
 Know Me validates:
-✓ All required fields present (passport, payment, legal name)
+✓ All required fields present (passport, legal name)
 ⚠️ CRITICAL - Email: Missing
 ⚠️ CRITICAL - Mobile Phone: Missing
 
