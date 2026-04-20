@@ -1,6 +1,6 @@
 # Know Me Agent
 
-This folder contains comprehensive documentation for the Profile "Know Me" Agent - SAP Concur's universal user intelligence platform service.
+This folder contains documentation and specifications for the Profile "Know Me" Agent - SAP Concur's universal user intelligence platform service.
 
 ## Overview
 
@@ -10,53 +10,11 @@ The Know Me Agent is a platform-level service that maintains comprehensive, cont
 
 When any agent in Concur needs to understand a user—whether for booking recommendations, expense validation, policy guidance, or proactive assistance—"Know Me" provides the complete user context.
 
----
+## Contents
 
-## 📂 Folder Structure
-
-### [Core Requirements](./Core%20Requirements/)
-Complete functional and non-functional requirements for the Know Me Agent:
-- Profile-Know-Me-Agent-Requirements.md - Full specification document
-- README.md - Overview of core features and capabilities
-
-**Key Features:**
-- Missing Profile Field Detection (conversational validation during booking)
-- Dynamic Learning & Behavioral Pattern Recognition (automatic preference learning)
-- Profile Intelligence (identity, documents, loyalty programs, relationships)
-
-### [Profile Validation](./Profile%20Validation/)
-Field categorization and validation requirements for bookings:
-- TPS-Field-Categories.md - Required, Critical, Recommended, and Optional fields
-- Validation rules (blocking, critical non-blocking, warning, recommended)
-- Booking scenario requirements (domestic/international flights, hotels, cars, rail)
-
-**Focus:** What's required for bookings to succeed and prevent failures
-
-### [Preferences and Behavioral Intelligence](./Preferences%20and%20Behavioral%20Intelligence/)
-Travel preferences and automatic learning capabilities:
-- Preference-Fields-and-Learning.md - All preference fields + behavioral learning specs
-- Pattern detection from bookings, expenses, calendar events
-- Confidence scoring and adaptive recommendations
-
-**Focus:** What makes bookings personalized and intelligent
-
----
-
-## Additional Documentation
-
-### EA-Assistant-Know-Me-Requirements.md
-Executive Assistant Co-Pilot integration requirements (JIRA CP-37633):
-- Arranger read/write access to traveler profiles
-- Missing field validation and work item generation
-- Behavioral intelligence for personalized booking recommendations
-
-### Non-GBTA-Use-Cases.md
-Use cases not part of GBTA roadmap:
-- TextApp mobile verification (agent-driven profile updates)
-- Proactive mobile number validation at booking, expense, and travel info pages
-- SMS verification flows via Twilio
-
----
+- **Profile-Know-Me-Agent-Requirements.md** - Complete functional and non-functional requirements document
+- **EA-Assistant-Know-Me-Requirements.md** - Executive Assistant Co-Pilot integration requirements (JIRA CP-37633)
+- **Non-GBTA-Use-Cases.md** - Additional use cases not part of GBTA roadmap (TextApp mobile verification, etc.)
 
 ## What Know Me Provides
 
@@ -74,26 +32,19 @@ Use cases not part of GBTA roadmap:
 - Context (role, travel frequency, destinations)
 
 ### Profile Validation & Completeness
-- Detects missing required fields for bookings (passport for international, KTN for TSA PreCheck)
+- Detects missing required fields for bookings
 - Proactively prompts conversationally to complete profile
 - Prevents booking failures by validating completeness
 - Updates profile in real-time during conversations
 
----
 
 ## Core Features
 
-### Feature 1: Missing Profile Field Detection
-**Priority for Conductor and EA Assistant workstream**
+### Feature 1: Missing Profile Field Detection (Priority for Conductor and EA Assistant workstream)
+Scenario-based validation that detects missing fields before booking (passport for international, KTN for TSA PreCheck, etc.) and prompts conversationally during booking flow.
 
-Scenario-based validation that detects missing fields before booking (passport for international, KTN for TSA PreCheck) and prompts conversationally during booking flow.
-
-### Feature 2: Dynamic Learning & Pattern Recognition
-**Priority for EA Assistant workstream**
-
+### Feature 2: Dynamic Learning & Pattern Recognition ( Priority for EA Assistant workstream)
 Automatically learns preferences from booking behavior, expense submissions, and calendar events without manual configuration. Calculates confidence scores and adapts to pattern changes.
-
----
 
 ## Use Cases
 
@@ -130,7 +81,6 @@ Know Me provides:
 - Auto-suggests: Order flowers + notify Lisa
 ```
 
----
 
 ## Success Metrics
 
@@ -139,8 +89,6 @@ Know Me provides:
 - **Booking time reduction**: -50% (target)
 - **Expense prediction accuracy**: ±15% of actual spend
 - **Auto-approval rate**: Increase due to pattern recognition
-
----
 
 ## Privacy & Security
 
@@ -151,17 +99,13 @@ Know Me provides:
 - GDPR compliance (export, deletion, access history)
 - Learning opt-out available
 
----
-
 ## Integration Points
 
 - **Conductor**: Trip extension calendar management
-- **Concur Engage/Agentic**: Conversational profile updates
+- **Concur Engage/ Agentic**: Conversational profile updates
 - **Booking Agent**: Personalized recommendations
 - **Expense Agent**: Anomaly detection and validation
 - **Executive Assistant Co-Pilot**: Personal context management
-
----
 
 ## Contact
 
