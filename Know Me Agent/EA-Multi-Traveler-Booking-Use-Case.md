@@ -131,14 +131,6 @@ Response:
       "tier": "Uber Black (prefers premium)",
       "confidence": "79%"
     }
-  },
-  "behavioralIntelligence": {
-    "bookingLeadTime": "18 days average",
-    "typicalSpend": {
-      "flight": "$350 CAD (YVR-SEA)",
-      "hotel": "$220 USD/night",
-      "meals": "$65 USD/day solo"
-    }
   }
 }
 ```
@@ -194,13 +186,6 @@ Response:
       "confidence": "100%"
     }
   },
-  "behavioralIntelligence": {
-    "bookingLeadTime": "21 days average",
-    "typicalSpend": {
-      "flight": "€850-1200 (MUC-SEA business class)",
-      "hotel": "$280 USD/night",
-      "meals": "$75 USD/day solo"
-    },
     "patterns": {
       "businessClass": "85% of long-haul flights (>6 hours)",
       "loungeAccess": "Always uses Senator lounge MUC"
@@ -567,7 +552,7 @@ ISSUES PREVENTED:
 
 PREFERENCES HONORED:
 • 18 individual preferences automatically applied across 3 travelers
-• 95% confidence average (based on behavioral learning)
+• 95% confidence average (based on historical booking patterns)
 • Zero manual preference lookups required
 ```
 
@@ -583,7 +568,6 @@ PREFERENCES HONORED:
 ### 2. **Personalization at Scale**
 - Applied 18 different preferences across 3 travelers
 - No manual lookup required - Know Me provided context instantly
-- Behavioral intelligence ensured accurate preference application
 
 ### 3. **EA Efficiency**
 - Single query returned all validation issues for 3 travelers
@@ -619,12 +603,6 @@ PREFERENCES HONORED:
 - Elena's preferences: 89-100% confidence → all auto-applied
 - Priya's preferences: 85-98% confidence → all auto-applied
 
-### Behavioral Intelligence:
-- Booking lead times predicted: Marc (18d), Elena (21d), Priya (unknown - new traveler)
-- Spend predictions: Within 10% accuracy for Marc and Elena
-- Loyalty program data: Automatically applied for miles/points earning
-
----
 
 ## Outcome
 
