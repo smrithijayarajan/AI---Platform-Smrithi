@@ -243,101 +243,124 @@ C) Send all 3 a profile completion request?"
 
 ---
 
-### Step 4: EA Takes Action - Profile Completion
+### Step 4: EA Co-Pilot Generates Work Items for Travel Arranger
 
 ```
-EA (Sarah): "Send profile completion requests to Priya and Elena. Book Marc now
-using his preferences."
+EA (Sarah): "Generate work items for Priya and Elena. Book Marc now using his preferences."
 
-EA Co-Pilot: "Perfect! I'm sending completion requests now..."
+EA Co-Pilot: "Perfect! I'm creating work items on your dashboard now..."
 
-[Know Me Agent generates personalized work items]
+[Know Me Agent generates work items for EA dashboard]
 ```
 
-#### **Email to Priya Sharma:**
+#### **Work Item Dashboard for Sarah (Travel Arranger)**
 
 ```
-Subject: 🚨 Action Required: Travel Documents for Bellevue Trip (May 15-17)
+┌─────────────────────────────────────────────────────────────────────┐
+│  EA CO-PILOT DASHBOARD - Work Items for Sarah                      │
+│  Bellevue AI Workshop Trip (May 15-17, 2026)                       │
+└─────────────────────────────────────────────────────────────────────┘
 
-Hi Priya,
+🚨 CRITICAL - BLOCKING BOOKINGS (2 travelers)
 
-Sarah is booking your travel to Bellevue, WA for the AI workshop (May 15-17),
-but I've identified critical issues that will prevent your booking:
+┌─────────────────────────────────────────────────────────────────────┐
+│ Priya Sharma (India → USA)                                         │
+│ Priority: URGENT | Status: WAITING ON TRAVELER                     │
+│                                                                     │
+│ 🚨 BLOCKING ISSUES:                                                │
+│ • US Visa Not Verified                                             │
+│   Reason: Indian citizens require B1/B2 visa for USA entry         │
+│   Impact: Cannot book flight without valid visa                    │
+│   Processing Time: 2-4 weeks                                       │
+│                                                                     │
+│   Actions for Sarah:                                               │
+│   [ ] Contact Priya to verify if she has existing US visa         │
+│   [ ] If yes: Request visa number, issue date, expiration         │
+│   [ ] If no: Inform Priya to apply immediately                    │
+│       → https://ustraveldocs.com/in/                               │
+│   [ ] Update profile once visa confirmed                           │
+│                                                                     │
+│ ⚠️ WARNING:                                                         │
+│ • Passport Expires: Aug 30, 2026 (4 months)                       │
+│   Risk: USA requires 6+ months validity beyond travel dates       │
+│   Recommendation: Advise Priya to begin passport renewal           │
+│                                                                     │
+│ 📧 CRITICAL - Missing Contact Info:                                │
+│ • Email: Not on file (cannot send boarding pass/updates)          │
+│ • Mobile: Not on file (cannot send SMS gate change alerts)        │
+│                                                                     │
+│   Actions for Sarah:                                               │
+│   [ ] Request Priya's email and mobile number                     │
+│   [ ] Update profile with contact information                     │
+│                                                                     │
+│ ✈️ Booking Ready Once Complete:                                    │
+│    Window seat, vegetarian meal, Marriott Gold                    │
+│                                                                     │
+│ [Contact Priya] [Update Profile] [Mark as Complete]               │
+└─────────────────────────────────────────────────────────────────────┘
 
-🚨 BLOCKING ISSUES:
-• US Visa: I don't have a valid US visa on file for you. As an Indian citizen,
-  you need a B1/B2 visa to enter the USA.
+┌─────────────────────────────────────────────────────────────────────┐
+│ Elena Müller (Germany → USA)                                       │
+│ Priority: HIGH | Status: WAITING ON TRAVELER                       │
+│                                                                     │
+│ ⚠️ CRITICAL - BLOCKING ISSUE:                                      │
+│ • ESTA Authorization Not Verified                                  │
+│   Reason: German citizens need ESTA for visa-waiver travel to USA │
+│   Cost: $21 USD                                                    │
+│   Processing: Up to 72 hours                                       │
+│   Impact: Cannot board flight without ESTA approval                │
+│                                                                     │
+│   Actions for Sarah:                                               │
+│   [ ] Contact Elena to check if ESTA already obtained             │
+│   [ ] If no: Provide ESTA application link                        │
+│       → https://esta.cbp.dhs.gov                                   │
+│   [ ] Once approved: Request ESTA number from Elena               │
+│   [ ] Update profile with ESTA authorization                       │
+│                                                                     │
+│ 📱 CRITICAL - Missing Contact Info:                                │
+│ • Mobile: Not on file (cannot send international flight alerts)   │
+│                                                                     │
+│   Actions for Sarah:                                               │
+│   [ ] Request Elena's mobile number                               │
+│   [ ] Update profile for SMS notifications                        │
+│                                                                     │
+│ ✈️ Booking Ready Once Complete:                                    │
+│    Lufthansa business class, window forward, gluten-free meal     │
+│    Marriott Platinum suite                                        │
+│                                                                     │
+│ Timeline: Apply within 24 hours to book by Apr 24                 │
+│                                                                     │
+│ [Contact Elena] [Update Profile] [Mark as Complete]               │
+└─────────────────────────────────────────────────────────────────────┘
 
-  ACTION:
-  - If you already have a valid US visa, please add it to your profile here:
-    [Update Visa Information]
-  - If you need to apply, start immediately (processing takes 2-4 weeks):
-    https://ustraveldocs.com/in/
+✅ READY TO BOOK (1 traveler)
 
-• Passport Expiration: Your passport expires Aug 30, 2026 (only 4 months from now).
-  USA requires 6+ months validity. You may be denied boarding or entry.
+┌─────────────────────────────────────────────────────────────────────┐
+│ Marc Dubois (Vancouver → USA)                                      │
+│ Priority: READY | Status: PROFILE COMPLETE                         │
+│                                                                     │
+│ ✅ All Requirements Met - Book Immediately                         │
+│                                                                     │
+│ 💡 OPTIONAL RECOMMENDATION:                                         │
+│ • NEXUS Enrollment Suggestion                                      │
+│   Benefit: Saves 45+ min at Canada-USA border                     │
+│   Cost: $50 for 5 years                                            │
+│   Note: Not blocking - can book now and suggest for future trips  │
+│                                                                     │
+│ ✈️ Ready to Book:                                                  │
+│    Alaska Airlines YVR-SEA, aisle seat                            │
+│    Hilton Bellevue Diamond (early check-in requested)             │
+│    Uber Black ground transport                                    │
+│    Estimated: $1,247 CAD                                           │
+│                                                                     │
+│ [Book Now] [Review Details]                                        │
+└─────────────────────────────────────────────────────────────────────┘
 
-  ACTION: Begin passport renewal process today.
-
-📧 CRITICAL - Missing Contact Information:
-• Email: I need your email address to send your boarding pass and flight updates
-• Mobile: I need your mobile number for SMS gate change alerts (critical for
-  your BLR-SEA connection)
-
-⏰ URGENT: Without a valid visa, I cannot book your flight. Please update your
-profile within 3 days to allow enough time for visa processing.
-
-[Update My Profile] [I Have Questions]
-
-Based on your past trips, I'll book:
-✈️ Window seat, vegetarian meal
-🏨 Marriott Bonvoy Gold - king room
-📍 Bellevue Marriott (close to workshop venue)
-
-Best,
-Joule (EA Co-Pilot for Sarah)
-```
-
-#### **Email to Elena Müller:**
-
-```
-Subject: ⚠️ Action Required: ESTA Needed for USA Trip (May 15-17)
-
-Hi Elena,
-
-Sarah is booking your travel to Bellevue for the AI workshop (May 15-17).
-Good news: Your profile is mostly complete! But I need one critical item:
-
-⚠️ ESTA Authorization Required:
-As a German citizen traveling to the USA, you need ESTA (Electronic System
-for Travel Authorization) approval before boarding your flight.
-
-ACTION NEEDED:
-• Apply now at: https://esta.cbp.dhs.gov
-• Cost: $21 USD
-• Processing: Up to 72 hours (apply TODAY to ensure approval before flight booking)
-• Once approved, add your ESTA number here: [Update ESTA]
-
-📱 ALSO MISSING: Mobile Phone Number
-• I need your mobile number to send SMS alerts for gate changes and delays
-• Critical for international flights with connections
-• Add here: [Update Mobile Number]
-
-⏰ TIMELINE:
-I'll wait for your ESTA approval before booking your flight. Please apply
-within 24 hours to stay on schedule.
-
-Based on your preferences, I'll book:
-✈️ Lufthansa MUC-SEA, window seat forward section, gluten-free meal
-✈️ Business class (long-haul, 10+ hours - your typical preference)
-🏨 Marriott Bonvoy Platinum - suite or high floor king
-🚗 Premium ground transport
-📍 Bellevue Marriott (Senator lounge access at SEA airport on return)
-
-[Complete My Profile] [I Have Questions]
-
-Best,
-Joule (EA Co-Pilot for Sarah)
+SUMMARY:
+• 2 travelers waiting on documentation (Priya: visa, Elena: ESTA)
+• 1 traveler ready to book immediately (Marc)
+• Action Required: Contact Priya and Elena to complete missing requirements
+• Estimated Time to Complete: 2-4 weeks (Priya visa), 72 hours (Elena ESTA)
 ```
 
 ---
@@ -399,20 +422,24 @@ BELLEVUE AI WORKSHOP BOOKING STATUS:
 
 ⏳ Priya Sharma - WAITING ON VISA
    Blocker: US B1/B2 visa not verified
-   Profile update request sent: Apr 21, 2:30 PM
+   Work item created: Apr 21, 2:30 PM
+   Assigned to: Sarah (Travel Arranger)
    Expected resolution: 2-4 weeks (visa processing time)
-   Status: Pending traveler action
+   Status: Pending arranger action
 
 ⏳ Elena Müller - WAITING ON ESTA
    Blocker: ESTA authorization not verified
-   Profile update request sent: Apr 21, 2:30 PM
+   Work item created: Apr 21, 2:30 PM
+   Assigned to: Sarah (Travel Arranger)
    Expected resolution: 72 hours
-   Status: Pending traveler action
+   Status: Pending arranger action
 
-NEXT ACTIONS:
+NEXT ACTIONS FOR SARAH:
+• Contact Priya to verify/obtain US visa (high priority)
+• Contact Elena to apply for ESTA (high priority)
 • Follow up with Priya if no response by Apr 24
 • Follow up with Elena if no response by Apr 22
-• Consider booking Priya's flight AFTER visa confirmed (closer to travel date)
+• Book Priya's flight AFTER visa confirmed (closer to travel date)
 • Book Elena's flight as soon as ESTA approved
 ```
 
@@ -420,20 +447,25 @@ NEXT ACTIONS:
 
 ### Step 7: Profile Updates Received - Know Me Validates
 
-#### **Scenario A: Elena Updates Profile (April 22)**
+#### **Scenario A: Sarah Contacts Elena, Elena Updates Profile (April 22)**
 
 ```
-Elena updates profile:
-• ESTA Number: 9876543210 (approved Apr 21)
+Sarah contacts Elena via email/Slack based on work item
+
+Elena responds:
+• ESTA Number: 9876543210 (already had ESTA, applied last year)
+• ESTA approved: Apr 15, 2025 (valid until Apr 15, 2027)
 • Mobile Phone: +49 173 555 0142
+
+Sarah updates Elena's profile in Know Me
 
 [Know Me Agent validates ESTA]
 
 GET /esta-verification/9876543210
 Response: {
   "valid": true,
-  "approvalDate": "2026-04-21",
-  "expiresDate": "2028-04-21",
+  "approvalDate": "2025-04-15",
+  "expiresDate": "2027-04-15",
   "status": "APPROVED"
 }
 
@@ -441,12 +473,12 @@ Response: {
 
 SMS to +49 173 555 0142: "Your verification code is 847392"
 
-Elena enters code → Mobile verified ✅
+Sarah provides code to Elena → Elena verifies → Mobile verified ✅
 
 [Know Me Agent notifies EA Co-Pilot]
 
 EA Co-Pilot: "✅ Great news! Elena's profile is now complete.
-• ESTA approved (valid until 2028)
+• ESTA approved (valid until 2027)
 • Mobile phone verified: +49 173 555 0142
 
 I'm ready to book her flight. Should I proceed with:
@@ -459,16 +491,20 @@ Estimated cost: €1,850 total
 [Book Now] [Review Options]"
 ```
 
-#### **Scenario B: Priya Confirms Existing Visa (April 23)**
+#### **Scenario B: Sarah Contacts Priya, Priya Confirms Existing Visa (April 23)**
 
 ```
-Priya updates profile:
+Sarah contacts Priya via email/phone based on work item
+
+Priya provides information:
 • US Visa Number: 98765432
 • Visa Type: B1/B2 (Business/Tourism)
 • Issue Date: 2024-03-15
 • Expiration: 2034-03-15
 • Email: priya.sharma@sap.com
 • Mobile: +91 98765 43210
+
+Sarah updates Priya's profile in Know Me
 
 [Know Me Agent validates visa status]
 
@@ -489,8 +525,8 @@ EA Co-Pilot: "✅ Priya's visa verified! Profile complete except passport warnin
 While her visa is valid, USA immigration may deny entry if passport doesn't have
 6+ months validity.
 
-RECOMMENDATION:
-Option A: Book flight now + strongly advise passport renewal
+RECOMMENDATION FOR SARAH:
+Option A: Book flight now + strongly advise Priya to renew passport
 Option B: Wait until passport renewed (safer, but delays booking)
 
 I can book:
@@ -504,7 +540,7 @@ I can book:
 Estimated cost: ₹1,85,000 (~$2,200 USD)
 
 Should I:
-A) Book now + warn Priya about passport
+A) Book now + Sarah warns Priya about passport
 B) Wait for passport renewal confirmation
 
 [Book with Warning] [Wait for Passport]"
@@ -543,7 +579,7 @@ EA Co-Pilot Final Report:
 TOTAL TIME SAVED:
 • Profile validation: Prevented 2 booking failures (no visa/ESTA)
 • Preference application: Saved 45 min booking time (no manual lookups)
-• Automated follow-up: Eliminated 6+ back-and-forth emails
+• Work item dashboard: Eliminated 6+ back-and-forth email threads with travelers
 
 ISSUES PREVENTED:
 • Priya: Would have booked flight → denied boarding (no visa)
@@ -571,7 +607,7 @@ PREFERENCES HONORED:
 
 ### 3. **EA Efficiency**
 - Single query returned all validation issues for 3 travelers
-- Automated follow-up emails with personalized requirements
+- Work item dashboard with actionable tasks for travel arranger
 - Dashboard tracking of completion status
 - Reduced booking time from 3+ hours → 45 minutes
 
@@ -582,9 +618,9 @@ PREFERENCES HONORED:
 - Compliance with international travel regulations
 
 ### 5. **User Experience**
-- Travelers received personalized emails explaining exactly what they needed
-- Know Me applied their historical preferences (window seat, vegetarian, business class)
-- Seamless mobile verification via SMS
+- Travel arranger (Sarah) received clear work items with specific actions needed
+- Know Me applied travelers' historical preferences (window seat, vegetarian, business class)
+- Seamless mobile verification via SMS (managed by arranger)
 - Zero disruption to workshop attendance
 
 ---
