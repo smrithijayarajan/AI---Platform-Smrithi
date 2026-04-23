@@ -4,6 +4,12 @@ This document contains field categories for travel preferences and behavioral le
 
 ---
 
+# **Static Preferences**
+
+Static preferences are preferences that currently exist in the Concur UI and system. These fields are explicitly set by users or administrators in their travel profile and are stored in the Travel Profile Service (TPS). Static preferences provide the baseline for personalized booking experiences and are supplemented by behavioral intelligence that Know Me Agent learns over time.
+
+---
+
 ## **Travel Preferences** (Pre-fill Booking Requests)
 
 These fields automatically apply learned or explicitly stated preferences during booking, saving time and ensuring comfort.
@@ -88,6 +94,12 @@ Global settings that affect how the system presents information and interacts wi
 | **Preferred Language** | Choice (BCP 47) | 20 chars | UI display language for Concur interface. Defaults to browser/system language if missing. | **Localization preference** - Customer sees interface in preferred language. If missing, system detects from browser (works for 90% of users). Helpful for multilingual users who want specific language regardless of location. Minor convenience. |
 | **Country Code** | Choice | 2-letter ISO | Traveler's home country for default currency, tax calculations, policy assignment. | **System defaults** - Used for currency display, tax forms, regional policy application. If missing, system infers from company location or login IP. Mostly invisible to customer—backend setting. |
 | **eReceipt Opt-In** | Yes/No | — | Receive electronic receipts via email instead of paper. Environmental preference and convenience. | **Paperless convenience** - Email receipts easier to organize than paper. Searchable, automatically archived. If missing, customer gets paper receipts (must scan manually for expense reports—extra work). eReceipts significantly faster for expense submission. Should arguably be "Recommended" for productivity. |
+
+---
+
+# **Behavioral Intelligence & Pattern Learning**
+
+Beyond static preferences, Know Me Agent automatically learns behavioral patterns from user actions without manual configuration. This dynamic intelligence supplements explicit preferences and adapts over time.
 
 ---
 
