@@ -97,7 +97,80 @@ Global settings that affect how the system presents information and interacts wi
 
 ---
 
-# **Behavioral Intelligence & Pattern Learning**
+# **Dynamic Preferences**
+
+Dynamic preferences are preferences that Know Me Agent learns from user behavior and patterns over time. These preferences do not exist as explicit fields in the current Concur UI or Travel Profile Service (TPS), but are inferred through behavioral intelligence and pattern recognition. Dynamic preferences supplement static preferences to provide deeper personalization.
+
+---
+
+## **Learned Travel Patterns** (Inferred from Behavior)
+
+These preferences are automatically detected and scored by Know Me Agent based on booking history, expense patterns, and calendar data.
+
+| Preference Type | Example Pattern | Data Source | Confidence Calculation | Impact on Recommendations |
+|----------------|-----------------|-------------|------------------------|---------------------------|
+| **Preferred Flight Time** | Evening departures (80% of bookings after 6pm) | Past flight bookings | Frequency × Consistency × Recency | Prioritizes evening flights in search results; suggests departure times matching historical pattern |
+| **Preferred Airline** | United Airlines (90% of past bookings) | Past flight bookings + loyalty programs | Frequency × Consistency × Recency | Ranks preferred airline higher in results; applies loyalty number automatically |
+| **Cabin Class Preference** | First class on long-haul (95% of flights >6 hours) | Past flight bookings | Frequency × Consistency × Recency | Auto-filters or prioritizes premium cabin for long-haul flights |
+| **Hotel Brand Loyalty** | Marriott (85% of stays over 22 years) | Past hotel bookings + loyalty programs | Frequency × Consistency × Recency × Tenure | Always shows Marriott first in search; applies elite status benefits |
+| **Hotel Floor Preference** | High floor (requested in 12 of last 15 bookings) | Past hotel bookings + special requests | Frequency × Consistency | Automatically requests high floor at booking; notes in confirmation |
+| **Specific Property Preference** | Marriott Union Square SF (15 stays) | Past hotel bookings + location | Frequency × Location Match | Suggests favorite property when booking in same city |
+| **Ground Transportation Provider** | Lyft (70% vs Uber 30%) | Past ride bookings + expense submissions | Frequency × Consistency | Prioritizes Lyft in booking recommendations; pre-fills app preference |
+| **Ground Transportation Tier** | Premium/Comfort (60% choose upgrades) | Past ride bookings | Frequency × Willingness to Pay | Suggests upgraded service tier; calculates likelihood of upgrade acceptance |
+| **Ride Timing Buffer** | Books rides 30 min before flight | Past ride bookings | Consistency × Average Lead Time | Suggests ride pickup time based on learned buffer preference |
+| **Dining Preferences - Cuisine** | Variety (Greek, Steakhouse, Vietnamese, Seafood) | Expense submissions + calendar | Diversity Score | Recommends diverse restaurant options; avoids suggesting same cuisine repeatedly |
+| **Dining Preferences - Solo vs Group** | Solo dinners at 7pm (80% solo) | Expense submissions + calendar | Frequency × Time Pattern | Suggests solo-friendly restaurants at typical dinner time |
+| **Dining Preferences - Price Tier** | Mid-to-high-end, no fast food | Expense submissions | Average Spend × Venue Type | Filters out budget options; recommends quality restaurants |
+| **Parking Location Pattern** | Parks at PAE for SEA flights (100% of trips) | Expense submissions + flight bookings | Frequency × Location Logic | Suggests PAE parking for SEA flights; validates unusual parking expenses |
+| **Meal Spend Context-Awareness** | $45 solo, $120 with clients | Expense submissions + calendar | Context Detection × Average | Validates expense amounts based on meal context; flags anomalies |
+| **Booking Lead Time** | Books 2 weeks in advance | Past booking timestamps | Average Lead Time × Consistency | Proactively suggests booking when approaching typical lead time |
+| **Frequent Destinations** | Monthly trips to NYC, quarterly to London | Past bookings + calendar | Frequency × Destination | Pre-fills destination suggestions; learns regional preferences |
+| **Trip Duration Patterns** | 3-day trips to NYC, 5-day trips to London | Past bookings + calendar | Average Duration × Destination | Suggests typical trip length when booking familiar destination |
+| **Receipt Submission Timing** | Submits within 2 days of trip | Expense submission timestamps | Average Lag Time × Consistency | Sends proactive reminders based on learned submission pattern |
+| **Seat Position Consistency** | Window seat (100% of bookings) | Past flight bookings | Frequency × Consistency | Auto-selects window seat; confidence score determines auto-apply vs suggest |
+
+---
+
+## **How Dynamic Preferences Are Used**
+
+### **1. Personalized Recommendations**
+- AI agents use dynamic preferences to rank search results
+- Higher confidence preferences auto-apply; medium confidence preferences suggest but don't auto-apply
+- Example: Fred books window seats 100% of the time (98% confidence) → Auto-selects window seat in booking flow
+
+### **2. Anomaly Detection**
+- Validates expenses against learned patterns
+- Example: Fred always parks at PAE for SEA flights but submits SEA parking receipt → Flags for review
+
+### **3. Proactive Assistance**
+- Triggers reminders based on learned timing patterns
+- Example: Fred always books 2 weeks in advance → Sends reminder 14 days before typical travel date
+
+### **4. Context-Aware Validation**
+- Adjusts validation rules based on historical context
+- Example: Fred spends $120 on client dinners vs $45 solo → Validates expense amount based on calendar context
+
+### **5. Preference Promotion**
+- After detecting strong patterns, Know Me Agent suggests saving as static preference
+- Example: "You've booked window seats 10 times in a row. Should I save this as your default preference?"
+
+---
+
+## **Difference: Static vs Dynamic Preferences**
+
+| Aspect | Static Preferences | Dynamic Preferences |
+|--------|-------------------|---------------------|
+| **Storage** | Stored in Travel Profile Service (TPS) | Stored in Know Me Agent behavioral database |
+| **User Control** | User explicitly sets in profile UI | AI automatically learns from behavior |
+| **Visibility** | Visible in profile settings | Transparent to user until suggested for promotion |
+| **Confidence** | 100% (user-declared) | Variable (calculated via confidence formula) |
+| **Adaptability** | Manual update required | Automatically adapts to behavior changes |
+| **Application** | Always applied | Applied based on confidence threshold |
+| **Examples** | Home Airport: SEA, Meal: Vegetarian | Preferred Flight Time: 6pm+, Hotel Brand: Marriott 85% |
+
+---
+
+
 
 Beyond static preferences, Know Me Agent automatically learns behavioral patterns from user actions without manual configuration. This dynamic intelligence supplements explicit preferences and adapts over time.
 
