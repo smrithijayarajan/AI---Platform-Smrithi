@@ -99,80 +99,56 @@ Global settings that affect how the system presents information and interacts wi
 
 # **Dynamic Preferences**
 
-Dynamic preferences are preferences that Know Me Agent learns from user behavior and patterns over time. These preferences do not exist as explicit fields in the current Concur UI or Travel Profile Service (TPS), but are inferred through behavioral intelligence and pattern recognition. Dynamic preferences supplement static preferences to provide deeper personalization.
+Dynamic preferences are learned by Know Me Agent from travel recommendations, booking history, and user behavior. These preferences are not explicitly set in the Concur UI but are inferred through behavioral intelligence and pattern recognition from travel data.
 
 ---
 
-## **Learned Travel Patterns** (Inferred from Behavior)
+## **Preferences Supported by Travel Recommendations API**
 
-These preferences are automatically detected and scored by Know Me Agent based on booking history, expense patterns, and calendar data.
+These preferences are directly available in the Travel Recommendations Team's API response and can be used for behavioral learning.
 
-| Preference Type | Example Pattern | Data Source | Confidence Calculation | Impact on Recommendations |
-|----------------|-----------------|-------------|------------------------|---------------------------|
-| **Preferred Flight Time** | Evening departures (80% of bookings after 6pm) | Past flight bookings | Frequency × Consistency × Recency | Prioritizes evening flights in search results; suggests departure times matching historical pattern |
-| **Preferred Airline** | United Airlines (90% of past bookings) | Past flight bookings + loyalty programs | Frequency × Consistency × Recency | Ranks preferred airline higher in results; applies loyalty number automatically |
-| **Cabin Class Preference** | First class on long-haul (95% of flights >6 hours) | Past flight bookings | Frequency × Consistency × Recency | Auto-filters or prioritizes premium cabin for long-haul flights |
-| **Hotel Brand Loyalty** | Marriott (85% of stays over 22 years) | Past hotel bookings + loyalty programs | Frequency × Consistency × Recency × Tenure | Always shows Marriott first in search; applies elite status benefits |
-| **Hotel Floor Preference** | High floor (requested in 12 of last 15 bookings) | Past hotel bookings + special requests | Frequency × Consistency | Automatically requests high floor at booking; notes in confirmation |
-| **Specific Property Preference** | Marriott Union Square SF (15 stays) | Past hotel bookings + location | Frequency × Location Match | Suggests favorite property when booking in same city |
-| **Ground Transportation Provider** | Lyft (70% vs Uber 30%) | Past ride bookings + expense submissions | Frequency × Consistency | Prioritizes Lyft in booking recommendations; pre-fills app preference |
-| **Ground Transportation Tier** | Premium/Comfort (60% choose upgrades) | Past ride bookings | Frequency × Willingness to Pay | Suggests upgraded service tier; calculates likelihood of upgrade acceptance |
-| **Ride Timing Buffer** | Books rides 30 min before flight | Past ride bookings | Consistency × Average Lead Time | Suggests ride pickup time based on learned buffer preference |
-| **Dining Preferences - Cuisine** | Variety (Greek, Steakhouse, Vietnamese, Seafood) | Expense submissions + calendar | Diversity Score | Recommends diverse restaurant options; avoids suggesting same cuisine repeatedly |
-| **Dining Preferences - Solo vs Group** | Solo dinners at 7pm (80% solo) | Expense submissions + calendar | Frequency × Time Pattern | Suggests solo-friendly restaurants at typical dinner time |
-| **Dining Preferences - Price Tier** | Mid-to-high-end, no fast food | Expense submissions | Average Spend × Venue Type | Filters out budget options; recommends quality restaurants |
-| **Parking Location Pattern** | Parks at PAE for SEA flights (100% of trips) | Expense submissions + flight bookings | Frequency × Location Logic | Suggests PAE parking for SEA flights; validates unusual parking expenses |
-| **Meal Spend Context-Awareness** | $45 solo, $120 with clients | Expense submissions + calendar | Context Detection × Average | Validates expense amounts based on meal context; flags anomalies |
-| **Booking Lead Time** | Books 2 weeks in advance | Past booking timestamps | Average Lead Time × Consistency | Proactively suggests booking when approaching typical lead time |
-| **Frequent Destinations** | Monthly trips to NYC, quarterly to London | Past bookings + calendar | Frequency × Destination | Pre-fills destination suggestions; learns regional preferences |
-| **Trip Duration Patterns** | 3-day trips to NYC, 5-day trips to London | Past bookings + calendar | Average Duration × Destination | Suggests typical trip length when booking familiar destination |
-| **Receipt Submission Timing** | Submits within 2 days of trip | Expense submission timestamps | Average Lag Time × Consistency | Sends proactive reminders based on learned submission pattern |
-| **Seat Position Consistency** | Window seat (100% of bookings) | Past flight bookings | Frequency × Consistency | Auto-selects window seat; confidence score determines auto-apply vs suggest |
+| Preference Field | Travel Recommendations API Field | Type | How It's Learned | Recommendation Impact |
+|-----------------|----------------------------------|------|------------------|----------------------|
+| **Baggage Preference - Carry-On** | `offerAttributes.carryOnBags[].allowanceType`, `quantity`, `isIncluded` | Object (allowance type, quantity, included status) | Learns if user always books flights with carry-on included vs. pays extra for carry-on | Prioritizes flights with included carry-on for users who consistently value this. Filters out basic economy without carry-on. |
+| **Baggage Preference - Checked** | `offerAttributes.checkedBags[].maxWeight`, `fee.amount`, `fee.currencyCode` | Object (weight limits, fees) | Tracks if user frequently pays for checked bags or avoids them (carry-on only traveler) | Highlights flights with free checked bags for users who consistently check luggage. Shows baggage fees prominently for carry-on-only travelers. |
+| **Change Fee Tolerance** | `offerAttributes.changeability.changeable`, `penalty`, `penaltyCurrencyCode` | Object (changeability status, penalty amount) | Detects if user consistently books flexible/changeable fares vs. always picks cheapest non-changeable | Prioritizes flexible fares for users with history of changing flights. Shows change fees clearly. Recommends refundable options for high-change users. |
+| **Refundability Preference** | `offerAttributes.refundability.refundable` | Choice (NOT_OFFERED, AVAILABLE_FOR_PURCHASE, INCLUDED) | Learns if user willing to pay premium for refundable tickets or always books non-refundable | Filters or prioritizes refundable fares for users who value flexibility. Shows refund policy prominently in recommendations. |
+| **Seat Preference - Legroom** | `offerAttributes.seatOffering.seatProfileType` | Choice (STANDARD_LEGROOM, EXTRA_LEGROOM, etc.) | Tracks if user consistently upgrades to extra legroom seats or satisfied with standard | Prioritizes extra legroom options for users who frequently upgrade. Auto-suggests exit row or premium economy for legroom-sensitive travelers. |
+| **Seat Offering Type Preference** | `offerAttributes.seatOffering.offeringType` | Choice (SEAT_INCLUDED, SEAT_SELECTION_FOR_FEE, etc.) | Learns if user willing to pay for advance seat selection or accepts free assignment at check-in | Highlights flights with included seat selection for users who value choosing seats. Shows seat selection fees for users sensitive to this. |
+| **Price Sensitivity** | `offers[].totalAmount` | Number | Calculates price variance user accepts (always cheapest vs. willing to pay more for preferred airline/time) | Ranks recommendations by price for price-sensitive users. Balances price with preferences for users who pay premiums. |
+| **Multi-Segment Journey Preference** | `segments[].length` | Number | Learns if user prefers nonstop flights or accepts connections to save money/time | Prioritizes nonstop flights for users who consistently book direct. Shows connection time clearly for users who accept layovers. |
 
 ---
 
-## **How Dynamic Preferences Are Used**
+## **Preferences Learned from Booking History (Not in Travel Recommendations API)**
 
-### **1. Personalized Recommendations**
-- AI agents use dynamic preferences to rank search results
-- Higher confidence preferences auto-apply; medium confidence preferences suggest but don't auto-apply
-- Example: Fred books window seats 100% of the time (98% confidence) → Auto-selects window seat in booking flow
+These preferences are learned from past booking selections, expense data, and calendar patterns but are not directly provided by the Travel Recommendations API.
 
-### **2. Anomaly Detection**
-- Validates expenses against learned patterns
-- Example: Fred always parks at PAE for SEA flights but submits SEA parking receipt → Flags for review
-
-### **3. Proactive Assistance**
-- Triggers reminders based on learned timing patterns
-- Example: Fred always books 2 weeks in advance → Sends reminder 14 days before typical travel date
-
-### **4. Context-Aware Validation**
-- Adjusts validation rules based on historical context
-- Example: Fred spends $120 on client dinners vs $45 solo → Validates expense amount based on calendar context
-
-### **5. Preference Promotion**
-- After detecting strong patterns, Know Me Agent suggests saving as static preference
-- Example: "You've booked window seats 10 times in a row. Should I save this as your default preference?"
-
----
-
-## **Difference: Static vs Dynamic Preferences**
-
-| Aspect | Static Preferences | Dynamic Preferences |
-|--------|-------------------|---------------------|
-| **Storage** | Stored in Travel Profile Service (TPS) | Stored in Know Me Agent behavioral database |
-| **User Control** | User explicitly sets in profile UI | AI automatically learns from behavior |
-| **Visibility** | Visible in profile settings | Transparent to user until suggested for promotion |
-| **Confidence** | 100% (user-declared) | Variable (calculated via confidence formula) |
-| **Adaptability** | Manual update required | Automatically adapts to behavior changes |
-| **Application** | Always applied | Applied based on confidence threshold |
-| **Examples** | Home Airport: SEA, Meal: Vegetarian | Preferred Flight Time: 6pm+, Hotel Brand: Marriott 85% |
+| Preference Field | Type | Data Source | How It's Learned | Recommendation Impact |
+|-----------------|------|-------------|------------------|----------------------|
+| **Airline Loyalty Programs** | List (United MileagePlus, Delta SkyMiles, American AAdvantage, etc.) | Past flight bookings, frequent flyer accounts linked to profile | Know Me tracks which airline loyalty programs user has enrolled in and uses most frequently across bookings | Prioritizes flights on airlines where user has loyalty status. Suggests flights that maximize miles/points earning. |
+| **TSA PreCheck** | Yes/No | Security screening patterns, Known Traveler Number (KTN) presence | Detects if user has TSA PreCheck based on KTN in profile or past boarding passes showing PreCheck | Filters flight results to show TSA PreCheck-eligible airlines/airports. Highlights time savings at security. |
+| **Global Entry** | Yes/No | International travel patterns, PASSID/Known Traveler Number | Infers from PASSID linked to Global Entry or travel patterns showing expedited customs clearance | Recommends airports with Global Entry kiosks. Highlights customs time savings for international arrivals. |
+| **Known Traveler Number (KTN)** | Text (9-10 digits) | TSA PreCheck/Global Entry enrollment | Extracted from travel profile or learned when user enters it during booking | Automatically populates KTN field during flight booking to ensure PreCheck benefits. |
+| **Redress Number** | Text | Watchlist resolution, TSA Redress Control Number | Learned when user provides it due to past watchlist issues | Auto-fills redress number on all bookings to prevent delays/secondary screening. |
+| **Preferred Flight Time** | Choice (Early morning, Morning, Afternoon, Evening, Late evening) | Flight booking history (time of day analysis) | Calculates % of flights booked in each time slot (e.g., 80% after 6pm = evening preference) | Sorts search results by preferred departure times. Shows evening flights first for evening-preferring travelers. |
+| **Preferred Airline** | Text (IATA codes) | Flight booking history, loyalty program usage | Tracks which airlines user books most frequently (e.g., 90% United bookings) | Ranks preferred airline higher in search results. Alerts when preferred airline has competitive fares. |
+| **Cabin Class Preference** | Choice (Economy, Premium Economy, Business, First) | Flight booking history (class purchased) | Detects patterns like "95% first class on flights >6 hours" or "always economy domestic" | Pre-filters search to preferred cabin class. Highlights upgrade opportunities. |
+| **Hotel Brand Loyalty** | List (Marriott, Hilton, Hyatt, IHG, etc.) | Hotel booking history, loyalty program memberships | Tracks hotel brand consistency (e.g., 22 years of Marriott stays = 99% confidence) | Prioritizes preferred brands in hotel search results. Shows loyalty benefits (free breakfast, room upgrades). |
+| **Favorite Hotel Properties** | List (specific hotel addresses/IDs) | Repeat stays at same property | Identifies hotels user books repeatedly in same city (e.g., 15 stays at Marriott Union Square SF) | Surfaces favorite properties first when searching in that destination. Shows "You've stayed here 15 times" label. |
+| **Ground Transport Provider** | Choice (Lyft, Uber, Rental Car, Taxi, Public Transit) | Expense submissions, ground transport bookings | Analyzes % usage of each provider (e.g., 70% Lyft vs 30% Uber) | Pre-selects preferred provider when booking ground transport. Prioritizes in expense category suggestions. |
+| **Ground Transport Service Tier** | Choice (Standard, Comfort/Plus, Premium/Black, Shared) | Ground transport booking history | Detects upgrade patterns (e.g., 60% Extra Comfort upgrades) | Auto-suggests preferred tier. Calculates willingness to pay for comfort. |
+| **Ground Transport Timing** | Number (minutes before departure) | Past booking timestamps vs. flight times | Calculates typical buffer (e.g., books rides 30 min before flight consistently) | Suggests pickup times based on learned buffer preference. Adjusts for airport size/security wait times. |
+| **Dining Preferences** | Text (cuisine types, price range) | Expense report meal submissions | Analyzes cuisine variety (Greek, Steakhouse, Vietnamese = adventurous eater) and avg spend ($45 solo, $120 client dinners) | Recommends restaurants matching preferred cuisines and appropriate price range for meal context. |
+| **Parking Location Patterns** | Text (airport codes, parking lot names) | Parking expense submissions, geolocation data | Identifies patterns like "Always parks at PAE, flies from SEA" (saves money by parking at cheaper airport) | Suggests cost-saving parking strategies. Recommends familiar parking lots. |
+| **Booking Lead Time** | Number (days before travel) | Flight/hotel booking timestamps vs. travel dates | Calculates average days between booking and departure (e.g., 14 days for domestic, 30 days international) | Sends proactive reminders when lead time approaching typical booking window. |
+| **Expense Submission Behavior** | Pattern (timely, last-minute, batched) | Expense report submission timestamps | Detects if user submits within 2 days (organized) vs. end of month (procrastinator) | Adjusts reminder frequency/timing. Suggests auto-submission for organized travelers. |
 
 ---
 
+# **Behavioral Intelligence & Pattern Learning**
 
-
-Beyond static preferences, Know Me Agent automatically learns behavioral patterns from user actions without manual configuration. This dynamic intelligence supplements explicit preferences and adapts over time.
+Beyond static and dynamic preferences, Know Me Agent automatically learns behavioral patterns from user actions without manual configuration. This intelligence supplements explicit preferences and adapts over time.
 
 ---
 
