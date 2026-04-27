@@ -24,6 +24,7 @@ This document focuses on:
 | **Last Name** | Text | 60 chars | Legal identity verification required by all travel suppliers | **Booking rejection** - Cannot complete any reservation without legal last name. System cannot generate ticket or confirmation. |
 
 ### International Travel - REQUIRED
+# Smrithi + Daniel's comments - Check Module Property ( Profile Wizard API) and move these to recommended
 
 | Field Name | Type | Max Length | Why Required | Impact on Customer Experience |
 |------------|------|------------|--------------|------------------------------|
