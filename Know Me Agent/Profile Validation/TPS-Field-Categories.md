@@ -49,6 +49,7 @@ This document focuses on:
 | **Phone Country Code** | Choice | 2-letter ISO | Ensures SMS/calls reach correct international phone number format (+1 US, +44 UK, +49 DE). Without correct country code, all notifications sent to wrong number. | **⚠️ CRITICAL: All communication fails internationally** - Airline sends gate change SMS to +1 (assuming US) but customer's phone is +44 UK—message never received. Customer misses gate change, flight departs without them. Hotel cannot reach customer for late arrival—cancels room as no-show. Ride-share driver calls wrong number—customer stranded at airport. Emergency contact attempts fail—family cannot reach traveler in crisis. |
 
 ### TSA/Trusted Traveler (US Travel)
+# Daniel- only for travel to and from US and if user is a US citizen. Gender is not required. DOB required if TAS number is added
 
 | Field Name | Type | Max Length | Why Recommended | Impact on Customer Experience |
 |------------|------|------------|-----------------|------------------------------|
