@@ -29,6 +29,35 @@ The Profile Agent ("Know Me") is a platform-level service that maintains a compr
 
 ---
 
+## Sample Feature Set
+
+The following examples illustrate how "Know Me" Agent goes beyond traditional static profile preferences to deliver context-aware, intelligent personalization:
+
+| Feature | Traditional Profile | Your "Know Me" Agent |
+|---------|-------------------|---------------------|
+| **Airlines** | "Prefers United" | "Avoids United if it's a Boeing 737 Max." |
+| **Dining** | N/A | "Prefers hotels near gluten-free dining options." |
+| **Timing** | "Morning flights" | "Wants to arrive at least 2 hours before the first meeting." |
+| **Commute** | N/A | "Prefers Uber/Lyft over renting a car in NYC." |
+
+### Why This Matters
+
+**Traditional profiles** store static preferences without context. They can't answer questions like:
+- *Why* does Fred avoid certain airlines? (Safety concerns about specific aircraft models)
+- *When* should flight timing be optimized? (Relative to meeting schedules, not just "morning")
+- *Where* does dining matter? (Hotels, not just restaurants)
+- *How* does location affect transportation? (NYC has great rideshare; other cities may prefer rentals)
+
+**"Know Me" Agent** learns nuanced, conditional preferences:
+- **Contextual rules:** "Avoid United 737 Max" vs. "Prefer United for other aircraft"
+- **Derived preferences:** "Gluten-free dining nearby" inferred from expense patterns showing gluten-free restaurant choices
+- **Time-relative logic:** "Arrive 2 hours before first meeting" (not just "morning flights")
+- **Location-aware decisions:** "Uber/Lyft in NYC" but "rental car in Phoenix" (learned from past bookings)
+
+This intelligence enables agents to make recommendations that feel personal, not just algorithmic.
+
+---
+
 ## 2. Core Objectives
 
 - Learn user preferences automatically from behavior without requiring manual configuration
@@ -481,7 +510,7 @@ This is within your monthly travel budget of $8,000."
 
 ## 6. Non-Functional Requirements
 
-### 6.1 Privacy & Security
+### 5.1 Privacy & Security
 - **NFR-1.1**: Field-level sensitivity classification (Public, Internal, Sensitive, Restricted)
 - **NFR-1.2**: Scope-based access control (profile:basic:read, profile:travel:read, profile:sensitive:read)
 - **NFR-1.3**: Purpose-based access logging (X-Request-Purpose header required)
@@ -489,7 +518,7 @@ This is within your monthly travel budget of $8,000."
 - **NFR-1.5**: GDPR compliance: user data export, deletion, access history dashboard
 - **NFR-1.6**: Learning opt-out: Users can disable behavioral tracking
 
-### 6.2 Learning Accuracy
+### 5.2 Learning Accuracy
 - **NFR-2.1**: Pattern detection accuracy: >85% for preferences with 5+ data points
 - **NFR-2.2**: Expense prediction accuracy: ±15% of actual spend
 - **NFR-2.3**: False positive rate: <10% (avoid incorrect pattern detection)
