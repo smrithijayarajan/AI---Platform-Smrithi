@@ -166,7 +166,7 @@ But it doesn't. Ever.
 
 ---
 
-## 9. **No Confidence Scoring or Transparency**
+## 9. **No Time-Saving Shortcuts**
 
 **Repetitive Manual Work:**
 
@@ -189,7 +189,7 @@ But it doesn't. Ever.
 
 ---
 
-## 10. **No Feedback Loop**
+## 10. **No Transparency or Feedback Loop**
 
 **User Has No Visibility:**
 - System doesn't explain why certain options are shown
@@ -202,10 +202,6 @@ But it doesn't. Ever.
 - "Why is this hotel showing first?"
 - "Can I see what preferences the system has learned about me?"
 - "How do I update my learned preferences?"
-
----
-
-## 11. **No Feedback Loop**
 
 **One-Way Communication:**
 - User books → System records data → **Nothing happens with that data**
