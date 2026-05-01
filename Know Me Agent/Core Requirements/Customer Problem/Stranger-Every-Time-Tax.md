@@ -166,23 +166,7 @@ But it doesn't. Ever.
 
 ---
 
-## 9. **No Loyalty Program Integration**
-
-**What's Missing:**
-- No recognition of frequent flyer status (United 1K, Delta Diamond)
-- No automatic prioritization of airlines where you have status
-- No "earn 5,421 MileagePlus miles" prominently displayed
-- No hotel loyalty program recognition (Marriott Bonvoy Platinum)
-- No indication of loyalty benefits (free breakfast, room upgrades, priority boarding)
-
-**User Impact:**
-- Must manually check each airline for status benefits
-- May miss opportunities to maximize loyalty earnings
-- No visibility into "you're 2,000 miles from Elite status" insights
-
----
-
-## 10. **No Time-Saving Shortcuts**
+## 9. **No Confidence Scoring or Transparency**
 
 **Repetitive Manual Work:**
 
@@ -205,7 +189,7 @@ But it doesn't. Ever.
 
 ---
 
-## 11. **No Confidence Scoring or Transparency**
+## 10. **No Feedback Loop**
 
 **User Has No Visibility:**
 - System doesn't explain why certain options are shown
@@ -221,7 +205,7 @@ But it doesn't. Ever.
 
 ---
 
-## 12. **No Feedback Loop**
+## 11. **No Feedback Loop**
 
 **One-Way Communication:**
 - User books → System records data → **Nothing happens with that data**
@@ -247,7 +231,6 @@ But it doesn't. Ever.
 | Adapts when my preferences change | Static, requires manual profile updates |
 | Proactive suggestions based on patterns | Silent, never offers insights |
 | Cross-product intelligence (expense → booking) | Siloed data, no connections |
-| Loyalty program integration | No recognition of status/miles |
 | "Book my usual trip" shortcuts | Full manual booking every time |
 | Transparent about what it knows | Black box, no visibility |
 | Modern, consumer-grade experience | Legacy, transactional interface |
