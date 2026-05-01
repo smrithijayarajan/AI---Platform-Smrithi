@@ -31,38 +31,7 @@ While SAP Concur treats users as strangers every time, competitors have implemen
 
 ---
 
-## 2. **Booking.com** - Consumer Platform Benchmark
-
-**Personalization Features:**
-- **"Based on your previous stays"**: Highlights hotels in your preferred neighborhood/brand
-- **Price tracking on repeat searches**: "This hotel is $20 cheaper than when you searched last week"
-- **Saved preferences**: Automatically filters by your typical price range, amenities (e.g., "free WiFi" always selected)
-- **Smart sorting**: Default search results ordered by relevance to your history, not just price
-- **Repeat booking indicators**: "You stayed here 3 times before"
-
-**Example User Experience:**
-- Returns to Paris (stayed there twice before)
-- First result: "You loved Le Marais last time - similar properties available"
-- Auto-filters: WiFi, breakfast included (from past bookings)
-- Shows: "You typically book 3-star hotels in this area"
-
----
-
-## 3. **Amazon Business** - Cross-Industry B2B Benchmark
-
-**Personalization Features:**
-- **"Buy it again"**: One-click reorder of frequently purchased items
-- **"Customers like you bought"**: Recommendations based on similar company purchase patterns
-- **Smart reorder suggestions**: "You order printer paper every 6 weeks - time to reorder?"
-- **Business-specific sorting**: Results prioritize vendors you've used before
-- **Bulk pricing memory**: Remembers your typical order quantities
-
-**Why This Matters:**
-Amazon Business proves that B2B purchasing platforms can deliver consumer-grade personalization. SAP Concur is also B2B but lacks this institutional memory.
-
----
-
-## 4. **Uber/Lyft** - Ground Transport Benchmark
+## 2. **Uber/Lyft** - Ground Transport Benchmark
 
 **Personalization Features:**
 - **Saved locations**: "Home" and "Work" pre-filled automatically
@@ -79,7 +48,7 @@ Amazon Business proves that B2B purchasing platforms can deliver consumer-grade 
 
 ---
 
-## 5. **Netflix** - Behavioral Intelligence Benchmark
+## 3. **Netflix** - Behavioral Intelligence Benchmark
 
 **Personalization Features:**
 - **"Because you watched X"**: Recommendations based on viewing history
@@ -95,7 +64,7 @@ Netflix demonstrates how behavioral intelligence eliminates decision fatigue. Us
 
 ## The Key Difference: Consumer-Grade vs Legacy Enterprise
 
-| Feature | Modern Platforms (Navan, Booking.com) | SAP Concur Today |
+| Feature | Modern Platforms (Navan, Uber, Netflix) | SAP Concur Today |
 |---------|--------------------------------------|------------------|
 | **First-time search** | Shows all options equally | Shows all options equally |
 | **10th search** | Top 2-3 matches pre-selected based on history | Still shows all options equally |
@@ -110,7 +79,6 @@ Netflix demonstrates how behavioral intelligence eliminates decision fatigue. Us
 **The "Stranger-Every-Time" Tax exists because SAP Concur operates like legacy enterprise software from 2010, while competitors have adopted consumer-grade personalization:**
 
 - **Navan** treats your 50th booking differently than your 1st
-- **Booking.com** remembers your hotel preferences and neighborhood choices  
 - **Uber** pre-fills your frequent destinations
 - **Netflix** eliminates browsing fatigue with smart recommendations
 
