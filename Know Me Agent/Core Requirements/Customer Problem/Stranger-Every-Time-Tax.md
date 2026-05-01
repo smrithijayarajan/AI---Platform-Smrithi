@@ -26,7 +26,7 @@ While SAP Concur treats users as strangers every time, competitors have implemen
 **Example User Experience:**
 - Sarah opens Navan for her 15th NYC trip
 - Top result: "Your usual - United 6:00pm, Marriott Times Square" (one click to book)
-- No scrolling through 50 flights or 100 hotels
+- No scrolling through multiple flights or hotels
 - System remembers: window seat, no checked bags, Lyft from airport
 
 ---
@@ -149,14 +149,14 @@ Netflix demonstrates how behavioral intelligence eliminates decision fatigue. Us
 **Generic, One-Size-Fits-All Experience:**
 
 **Flight Search:**
-- Shows all 50+ flights in generic order (usually by price or departure time)
+- Shows all flights in generic order (usually by price or departure time)
 - No prioritization based on your airline loyalty
 - No filtering by your preferred times
 - No awareness of your cabin class patterns
 - Treats you the same as every other user
 
 **Hotel Search:**
-- Shows 100+ hotels in random/generic order
+- Shows multiple hotels in random/generic order
 - Your favorite hotel (stayed 15 times) buried on page 3
 - No brand loyalty recognition
 - No "you've stayed here before" indicators
@@ -298,7 +298,7 @@ But it doesn't. Ever.
 | User Expectation (Modern Consumer Apps) | SAP Concur Reality |
 |----------------------------------------|-------------------|
 | "Remember me" - system learns from my behavior | Treats every booking like the first |
-| Top 2-3 personalized recommendations | 50+ generic, unsorted options |
+| Top 2-3 personalized recommendations | Multiple generic, unsorted options |
 | Auto-filters to my preferences | Manual filtering every time |
 | Adapts when my preferences change | Static, requires manual profile updates |
 | Proactive suggestions based on patterns | Silent, never offers insights |
@@ -328,6 +328,6 @@ What it's missing:
 - ❌ Cross-product intelligence
 - ❌ Modern, consumer-grade personalization
 
-**The result:** A "Stranger-Every-Time" experience where frequent travelers waste 10-15 minutes per booking answering the same questions over and over, despite having 50+ bookings in their history that clearly show their preferences.
+**The result:** A "Stranger-Every-Time" experience where frequent travelers waste 10-15 minutes per booking answering the same questions over and over, despite having multiple bookings in their history that clearly show their preferences.
 
 **Know Me Agent solves this by bringing behavioral intelligence, adaptive learning, and modern personalization to the SAP Concur booking experience.**
