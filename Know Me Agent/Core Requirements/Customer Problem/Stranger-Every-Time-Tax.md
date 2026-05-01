@@ -68,7 +68,7 @@ Netflix demonstrates how behavioral intelligence eliminates decision fatigue. Us
 |---------|--------------------------------------|------------------|
 | **First-time search** | Shows all options equally | Shows all options equally |
 | **10th search** | Top 2-3 matches pre-selected based on history | Still shows all options equally |
-| **25th search** | One-click "book my usual trip" | Still manually filtering 50 flights |
+| **25th search** | One-click "book my usual trip" | Decision fatigue - user must sort through multiple options again |
 | **Preference updates** | Automatic (detects behavior change) | Manual (user must edit profile) |
 | **Transparency** | "You book United 90% of the time" | Silent (no visibility into what system knows) |
 
