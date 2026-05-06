@@ -260,9 +260,6 @@ else:
 ```
 ```
 
----
-
-## Time to Resolution Comparison
 
 | Approach | Time to Solution | Team Escalations | Customer Effort |
 |----------|------------------|------------------|-----------------|
