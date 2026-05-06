@@ -148,10 +148,6 @@ POST https://eu2.api.concursolutions.com/profile/v4/Users/f10dbb63-8f4f-4cd5-b64
 [Copy Corrected Code] [Generate Python Code] [View Documentation]
 ```
 
----
-
-## Time to Resolution Comparison
-
 | Approach | Time to Solution | Human Touchpoints | Customer Effort |
 |----------|------------------|-------------------|-----------------|
 | **Current (Email Support)** | ~1 month (4 weeks) | 6+ emails across 4 people | Very High (multiple test calls, logs, back-and-forth) |
