@@ -10,6 +10,12 @@ The Know Me Agent is a platform-level service that maintains comprehensive, cont
 
 When any agent in Concur needs to understand a user—whether for booking recommendations, expense validation, policy guidance, or proactive assistance—"Know Me" provides the complete user context.
 
+## Team
+
+- **PM:** Smrithi Jayarajan
+- **Architect:** Ravi Laudya
+- **UX:** Apoorva Bitton
+
 ## Contents
 
 - **Profile-Know-Me-Agent-Requirements.md** - Complete functional and non-functional requirements document
