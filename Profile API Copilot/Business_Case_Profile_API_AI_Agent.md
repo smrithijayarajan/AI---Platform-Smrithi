@@ -1,4 +1,4 @@
-# BUSINESS CASE: Profile API AI Agent
+# BUSINESS CASE: Profile API AI CoPilot
 
 **Phase 1:** Internal Technical Consultants | **Phase 2:** Customers & Partners
 
