@@ -153,21 +153,6 @@ POST https://eu2.api.concursolutions.com/profile/v4/Users/f10dbb63-8f4f-4cd5-b64
 
 ---
 
-## Success Criteria
-
-### Phase 1 (Internal Consultants):
-- ✅ Detect missing `path` field in `replace` operations
-- ✅ Correct field name casing errors
-- ✅ Recommend `/User` endpoint when `/Bulk` used for single user
-- ✅ Generate working code in Python/Java
-- ✅ Link to relevant documentation
-
-### Phase 2 (Customers & Partners):
-- ✅ Reduce API-related support tickets by 80%
-- ✅ Achieve 3-minute average resolution time for common errors
-- ✅ Deflect $60,000/month in support costs ($720,000/year)
-
----
 
 ## Example AI Response Template (For Developer)
 
