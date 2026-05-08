@@ -90,9 +90,8 @@ Netflix demonstrates how behavioral intelligence eliminates decision fatigue. Us
 ## 1. **No Behavioral Memory**
 
 **The System Has Amnesia:**
-- **Zero awareness of booking history** - Treats your 50th booking identically to your 1st
+
 - **No pattern recognition** - Doesn't observe that you book United 90% of the time
-- **Doesn't learn from behavior** - Even after 100 trips, doesn't know your preferences
 - **No cross-session memory** - Every search starts from scratch
 
 **Example:**
