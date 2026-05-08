@@ -144,33 +144,7 @@ Netflix demonstrates how behavioral intelligence eliminates decision fatigue. Us
 
 ---
 
-## 4. **No Personalized Search Results**
-
-**Generic, One-Size-Fits-All Experience:**
-
-**Flight Search:**
-- Shows all flights in generic order (usually by price or departure time)
-- No prioritization based on your airline loyalty
-- No filtering by your preferred times
-- No awareness of your cabin class patterns
-- Treats you the same as every other user
-
-**Hotel Search:**
-- Shows multiple hotels in random/generic order
-- Your favorite hotel (stayed 15 times) buried on page 3
-- No brand loyalty recognition
-- No "you've stayed here before" indicators
-- Forces manual scrolling to find familiar properties
-
-**Example: Sarah's 25th Trip to NYC**
-- Has stayed at Marriott Times Square 15 times
-- Concur shows: Generic list, Marriott buried on page 3
-- Sarah must: Search, scroll, find her usual hotel manually
-- Time wasted: 3-5 minutes every time
-
----
-
-## 5. **No Proactive Recommendations**
+## 4. **No Proactive Recommendations**
 
 **System Never Suggests or Learns:**
 - Doesn't say "You always book evening flights - should I make this your default?"
@@ -186,7 +160,7 @@ But it doesn't. Ever.
 
 ---
 
-## 6. **No Adaptive Intelligence (Preferences Become Stale)**
+## 5. **No Adaptive Intelligence (Preferences Become Stale)**
 
 **Static Preferences Never Update:**
 
@@ -205,7 +179,7 @@ But it doesn't. Ever.
 
 ---
 
-## 7. **No Contextual Personalization**
+## 6. **No Contextual Personalization**
 
 **System Doesn't Understand Context:**
 
@@ -227,7 +201,7 @@ But it doesn't. Ever.
 
 ---
 
-## 8. **No Cross-Product Intelligence**
+## 7. **No Cross-Product Intelligence**
 
 **Siloed Data:**
 - **Flight booking** doesn't inform **hotel recommendations**
@@ -242,7 +216,7 @@ But it doesn't. Ever.
 
 ---
 
-## 9. **No Time-Saving Shortcuts**
+## 8. **No Time-Saving Shortcuts**
 
 **Repetitive Manual Work:**
 
@@ -265,7 +239,7 @@ But it doesn't. Ever.
 
 ---
 
-## 10. **No Transparency or Feedback Loop**
+##9. **No Transparency or Feedback Loop**
 
 **User Has No Visibility:**
 - System doesn't explain why certain options are shown
