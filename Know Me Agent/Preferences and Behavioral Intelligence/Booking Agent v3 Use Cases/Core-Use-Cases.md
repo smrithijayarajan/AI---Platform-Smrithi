@@ -6,12 +6,16 @@
 One critical gap in the current Concur experience is the lack of transparency when users book trips. The system makes decisions behind the scenes—sorting results, filtering options, applying preferences—but users never see **why** they're seeing what they're seeing or **how** the system is helping them. This creates a "black box" experience where personalization happens invisibly, leaving users wondering if the system truly understands their needs.
 
 ### The Agentic Workflow Solution
-In the new Booking Agent v3 architecture, we introduce **transparent agent invocation** similar to Gemini's approach—making AI assistance visible and explainable throughout the booking journey.
+In Booking Agent v3, we introduce **Know Me as your personalization agent**—a transparent intelligence provider that powers personalized booking recommendations. The workflow operates as follows:
+
+1. **Know Me provides intelligence**: Surfaces preferences, patterns, and reasoning to Booking Agent
+2. **Booking Agent displays recommendations**: Shows options to users with transparent explanations of why they were selected
+3. **Conversational preference updates**: When users want to change preferences, Know Me is explicitly invoked and users update preferences directly
 
 **Visual Agent Invocation Example:**
 ```
 ┌─────────────────────────────────────────────────────────┐
-│ 🤖 Know Me Personalization Agent                       │
+│ 🤖 Know Me Agent Invoked                                │
 │ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
 │ Analyzing your preferences and travel history...        │
 │ ✓ Retrieved your flight preferences                     │
@@ -20,21 +24,44 @@ In the new Booking Agent v3 architecture, we introduce **transparent agent invoc
 └─────────────────────────────────────────────────────────┘
 ```
 
-**Transparent Reasoning Messages to User:**
+**Booking Agent Displays Recommendations with Reasoning:**
 ```
-💡 Based on your preferences and travel history:
+💡 Your Personalized Recommendations:
 
 ✈️ Flights
-   "You typically prefer United for this route (15 past bookings) 
-    with morning departures. We've prioritized these options."
+   "Based on your travel history, you typically prefer United for 
+    this route (15 past bookings) with morning departures. 
+    We've prioritized these options."
+   
+   [View Flights] [Change Preferences]
 
 🏨 Hotels  
    "You've stayed at Union Square Marriott 12 times when visiting 
     SF for client meetings. It's our top recommendation."
+   
+   [View Hotels] [Change Preferences]
 
 🚗 Ground Transport
    "In NYC, you always use ride-share instead of rental cars. 
     We've pre-selected Uber for this trip."
+   
+   [Confirm] [Change Preferences]
+```
+
+**When User Clicks "Change Preferences" - Know Me is Invoked:**
+```
+┌─────────────────────────────────────────────────────────┐
+│ 🤖 Know Me Agent - Update Your Preferences             │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│                                                         │
+│ User: "I need evening flights for this trip"           │
+│                                                         │
+│ Know Me: "I've updated your search to evening flights. │
+│          Should I save this as your new preference     │
+│          for SFO→NYC routes, or just for this trip?"   │
+│                                                         │
+│ [Just this trip] [Update for all SFO→NYC trips]        │
+└─────────────────────────────────────────────────────────┘
 ```
 
 ### Integration Architecture
