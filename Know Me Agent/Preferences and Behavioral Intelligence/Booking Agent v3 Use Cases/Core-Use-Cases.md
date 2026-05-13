@@ -1,10 +1,53 @@
 # Booking Agent v3 - Know Me Integration: Core Use Cases
 
 ## Overview
+
+### The Transparency Gap in Concur Today
+One critical gap in the current Concur experience is the lack of transparency when users book trips. The system makes decisions behind the scenes—sorting results, filtering options, applying preferences—but users never see **why** they're seeing what they're seeing or **how** the system is helping them. This creates a "black box" experience where personalization happens invisibly, leaving users wondering if the system truly understands their needs.
+
+### The Agentic Workflow Solution
+In the new Booking Agent v3 architecture, we introduce **transparent agent invocation** similar to Gemini's approach—making AI assistance visible and explainable throughout the booking journey.
+
+**Visual Agent Invocation Example:**
+```
+┌─────────────────────────────────────────────────────────┐
+│ 🤖 Know Me Personalization Agent                       │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│ Analyzing your preferences and travel history...        │
+│ ✓ Retrieved your flight preferences                     │
+│ ✓ Loaded your hotel loyalty programs                    │
+│ ✓ Detected route-specific patterns (SFO → NYC)         │
+└─────────────────────────────────────────────────────────┘
+```
+
+**Transparent Reasoning Messages to User:**
+```
+💡 Based on your preferences and travel history:
+
+✈️ Flights
+   "You typically prefer United for this route (15 past bookings) 
+    with morning departures. We've prioritized these options."
+
+🏨 Hotels  
+   "You've stayed at Union Square Marriott 12 times when visiting 
+    SF for client meetings. It's our top recommendation."
+
+🚗 Ground Transport
+   "In NYC, you always use ride-share instead of rental cars. 
+    We've pre-selected Uber for this trip."
+```
+
+### Integration Architecture
 This document outlines the 3 core use cases for integrating the Know Me Agent with the Concur Booking Agent v3. The integration follows a clear separation of concerns:
 
-- **Know Me Agent**: Intelligence layer - surfaces user preferences, learned patterns, and behavioral intelligence
-- **Booking Agent**: Presentation layer - displays options, handles user interaction, and completes bookings
+- **Know Me Agent**: Intelligence layer - surfaces user preferences, learned patterns, and behavioral intelligence with transparent reasoning
+- **Booking Agent**: Presentation layer - displays options, communicates AI reasoning to users, handles interaction, and completes bookings
+
+### Key Principles
+1. **Visibility**: Users see when Know Me agent is invoked and what it's doing
+2. **Explainability**: Every personalized recommendation includes reasoning ("because you always...")
+3. **Control**: Users can override, adjust, or ignore suggestions with one click
+4. **Learning transparency**: System communicates when it's learning new patterns ("We noticed you've booked aisle seats 3 times—should we save this preference?")
 
 ---
 
