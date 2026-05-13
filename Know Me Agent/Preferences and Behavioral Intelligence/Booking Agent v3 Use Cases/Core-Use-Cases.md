@@ -335,26 +335,8 @@ Packaged as single atomic unit: Flight + Hotel + Car with all preferences pre-co
 
 ---
 
-## Confidence Score Application Guidelines
 
-### High Confidence (>90%)
-- **Know Me**: Provides as primary recommendation
-- **Booking Agent**: Auto-selects, pre-fills, sorts to top
-- **Example**: One-click booking for routine routes
-
-### Medium Confidence (70-90%)
-- **Know Me**: Provides as suggested option
-- **Booking Agent**: Highlights with badges, secondary sorting
-- **Example**: "Your preferred airline" badge on United flights
-
-### Low Confidence (<70%)
-- **Know Me**: Provides as background context
-- **Booking Agent**: Subtle hints, tertiary sorting
-- **Example**: Recent one-time behavior not yet established as pattern
-
----
-
-## Required Preferences by Booking Context
+## Required Preferences by Booking Context ( Needs Review)
 
 ### Flight Booking
 **Required (2 fields - 30 seconds):**
