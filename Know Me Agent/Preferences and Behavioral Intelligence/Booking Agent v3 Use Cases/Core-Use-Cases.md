@@ -23,17 +23,67 @@ A frequent business traveler opens Concur to book a flight from San Francisco to
 - Hotel Brand Preference: Hilton
 - Car Type Preference: Mid-size, Automatic
 
-**Learned Behavioral Patterns:**
-- Airline Loyalty: United MileagePlus (High confidence >90%)
-- Preferred Flight Times: Morning departures (7-9 AM), Evening returns (6-8 PM)
-- Cabin Class: Economy (domestic), Premium Economy (international >6 hrs)
-- Hotel Brand Loyalty: Hilton properties (High confidence >90%)
-- Ground Transport: Hertz rentals, decline insurance
+**Learned Behavioral Patterns (Dynamic Intelligence):**
+
+*Contextual Flight Preferences:*
+- **Airline Loyalty**: United MileagePlus primary (High confidence 95%), but flies Delta for Atlanta routes (90% of ATL trips)
+- **Trip purpose patterns**: Books premium economy for client meetings (85% confidence), economy for internal events (95% confidence)
+- **Route-specific behaviors**: 
+  - SFO→NYC: Prefers morning red-eye flights (saves hotel night), learned from 8 bookings
+  - SFO→LAX: Prefers afternoon flights (avoids morning traffic), learned from 12 bookings
+  - SFO→SEA: Always books direct even if $100 more expensive (5 consecutive direct bookings)
+- **Layover intelligence**: Avoids connections <90 minutes (missed 2 connections historically), prefers direct flights when price difference <$150
+- **Aircraft preferences**: Avoids Boeing 737 MAX on routes where alternatives exist (learned from 3 rebookings with Boeing avoidance pattern)
+- **Cabin class flexibility**: Economy for flights <3hrs (98% confidence), Premium Economy for international >6hrs (92% confidence), upgrades to Business if <$300 difference on red-eyes
+
+*Dynamic Hotel Intelligence:*
+- **Destination-specific patterns**: 
+  - NYC: Always books Midtown near Penn Station (12 stays), never downtown
+  - SF: Prefers Union Square Marriott (15 past stays), but switches to Mission Bay Courtyard when meeting location is SoMa/biotech district
+  - Chicago: Books airport hotels for <24hr trips (8 instances), downtown Loop area for multi-day stays (10 instances)
+  - Austin: Prefers Downtown Hilton (6 stays) except during SXSW when books North Austin (learned from 2 festival-time trips)
+- **Brand loyalty with flexibility**: 
+  - Primary: Hilton family (65% of bookings)
+  - Secondary: Marriott when Hilton unavailable or >30% more expensive
+  - Independent boutique hotels when traveling to Portland/Seattle (emerging pattern, 4 occurrences)
+- **Meeting proximity learning**: Books hotels within 0.5 miles of meeting location when multiple daily meetings detected in trip notes
+- **Stay duration patterns**: 
+  - Extended stay (>3 nights): Books hotels with kitchenettes, fitness center becomes priority filter
+  - Short stay (<2 nights): Room quality prioritized over amenities
+- **Floor & room preferences**: High floor preference (>10th floor) in urban hotels (78% confidence), ground floor for resort/suburban properties with parking access
+- **Property-level learning**: Within Hilton brand, strongly prefers Garden Inn over Hampton Inn (learned from 8 upgrades/changes)
+
+*Adaptive Ground Transport:*
+- **City-specific transportation modes**: 
+  - NYC/SF/Boston: Ride-share only (Uber/Lyft preferred), never rents cars (100% pattern consistency)
+  - LA/Phoenix/Dallas: Always rents car (learned from 15 rentals vs 0 ride-shares)
+  - Seattle: Rents car if trip >2 days, ride-share if day trip (contextual pattern)
+  - Chicago: Uses ride-share for Loop/downtown, rents car for suburban office parks
+- **Vehicle class adaptation**: 
+  - Solo travel: Mid-size sedan standard (82% of bookings)
+  - Traveling with colleagues: Upgrades to full-size or SUV (detected from shared expense reports, 6 instances)
+  - Winter trips to mountain regions: Prefers AWD/SUV vehicles (4 occurrences)
+- **Rental company preferences**: 
+  - Primary: Enterprise (58% of rentals, proximity to hotels)
+  - Secondary: Hertz at airports with dedicated lots (faster pickup)
+  - Avoids: Budget/Economy tier brands (switched away 3 times)
+- **Insurance & add-ons**: Consistently declines insurance and GPS (20+ rentals), but accepted GPS once in rural Montana (contextual exception)
+
+*Booking Pattern Intelligence:*
+- **Modification behavior**: 
+  - Changes flights within 48hrs of booking 23% of time (indicates researching/comparing before finalizing)
+  - Never modifies hotel once booked (high confidence in initial selection)
+  - Cancels and rebooks car rentals when better rate appears (price-monitoring behavior detected)
+- **Alternative preferences**: When primary choice unavailable, learned fallback sequence:
+  - Flights: United → Alaska → Delta (never books Spirit/Frontier even when cheapest)
+  - Hotels: Hilton Garden Inn → Courtyard Marriott → Hyatt Place
+- **Multi-city intelligence**: Books separate one-way flights vs round-trip when visiting multiple cities (learned from 4 multi-city trips)
 
 **Confidence Scores:**
-- High (>90%) for frequently used patterns
-- Medium (70-90%) for emerging patterns
-- Low (<70%) for infrequent behaviors
+- High (>90%) for frequently used patterns with consistency (e.g., airline loyalty, NYC hotel location)
+- Medium (70-90%) for emerging patterns with 3-8 occurrences (e.g., boutique hotels in Portland)
+- Low (<70%) for context-dependent or infrequent behaviors (e.g., AWD vehicles in winter)
+- Adaptive: Confidence decreases if pattern breaks (e.g., switches from United to Delta 3x in a row triggers re-evaluation)
 
 ### Booking Agent Responsibilities
 
