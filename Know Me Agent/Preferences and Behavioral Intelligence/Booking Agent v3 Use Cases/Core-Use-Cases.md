@@ -17,12 +17,12 @@ Know Me continuously learns user patterns across **all Concur agents**—not jus
 - **Conductor Agent**: Travel policy preferences, approval patterns, compliance behaviors
 - **EA CoPilot Agent**: Delegate booking patterns, executive preferences, scheduling priorities
 - **Trip Change Agent**: Modification behaviors, flexibility preferences, change frequency patterns
-- **Expense Agent**: Spending patterns, preferred vendors, receipt submission habits
+- **Future Agents**: As new agents are added to the platform, Know Me will learn from their interactions
 
 This cross-agent intelligence ensures that when Booking Agent invokes Know Me, it has access to the **most recent and comprehensive** user preferences learned from every touchpoint across the Concur platform. For example:
 - If a user frequently modifies flights to earlier times in Trip Change Agent, Booking Agent will prioritize earlier departure options
 - If EA CoPilot learns a user always books hotels within walking distance of meeting venues, Booking Agent applies this proximity preference automatically
-- If Expense Agent detects a user always submits Uber receipts in NYC, Booking Agent pre-selects ride-share for NYC trips
+- As new agents are introduced, their learned patterns automatically enrich Know Me's intelligence for all other agents
 
 **Visual Agent Invocation Example:**
 ```
