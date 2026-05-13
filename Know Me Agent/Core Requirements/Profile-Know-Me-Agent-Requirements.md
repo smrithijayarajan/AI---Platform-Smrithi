@@ -2,30 +2,54 @@
 
 ## 1. Overview
 
-The Profile Agent ("Know Me") is a platform-level service that maintains a comprehensive, context-aware user profile enabling personalized experiences across all SAP Concur travel and expense products.
+The Profile Agent ("Know Me") is a platform-level service that maintains a comprehensive, context-aware user profile enabling personalized experiences across all SAP Concur travel and expense products. Unlike traditional static profile systems, "Know Me" combines explicit user data with learned behavioral intelligence to deliver truly personalized recommendations and proactive assistance.
 
 **Key goal: Universal user intelligence.**
+
+"Know Me" serves as the **system's memory of the user**—eliminating the need for users to repeatedly state their preferences or explain their behavior. Instead of asking "Do you want a window seat?" every time, the system already knows. Instead of requiring users to manually configure preferences in settings, "Know Me" learns from actual behavior: Fred always books window seats, so the system auto-selects them. Fred parks at PAE airport and flies from SEA—the system remembers and validates this pattern in expense reports.
+
+This memory spans across all interactions:
+- **Booking agents** know Fred prefers Marriott Union Square in SF (15 previous stays) without asking
+- **Expense agents** recognize Fred's typical meal spending ($45 solo, $120 with clients) and flag anomalies
+- **EA assistants** remember Fred wants to arrive 2 hours before meetings, not just "morning flights"
+- **Policy agents** understand Fred's 100% compliance history and streamline approvals accordingly
+
+Users experience a system that **knows them**, not one that interrogates them. No repetitive forms. No re-entering preferences. No explaining why they booked a certain way. "Know Me" remembers, learns, and adapts—making every interaction feel personal, efficient, and intelligent.
 
 "Know Me" serves as the single source of truth for user context and intelligence. When any agent in Concur needs to understand a user—whether for booking recommendations, expense validation, policy guidance, or proactive assistance—"Know Me" provides:
 
 ### Personal & identity information
-- Contact details (email, phone number, address)
-- Travel documents (passport information, visa details)
-- Work information (cost center, department, manager, legal entity)
-- Account details (employee ID, user role, permissions)
+- **Contact details:** Email, phone number, home/work address, emergency contacts
+- **Travel documents:** Passport information, visa details, expiration dates, Known Traveler Numbers
+- **Work information:** Cost center, department, manager hierarchy, legal entity, approval chain
+- **Account details:** Employee ID, user role, permissions, policy tier, spending limits
+- **Organizational context:** Delegates (e.g., Angela Demele for Fred), administrative assignments
 
 ### Preferences & behavioral intelligence
-- User preferences (red-eye flights, Marriott loyalty, window seats)
-- Behavioral patterns (parks at PAE, flies from SEA, books 2 weeks ahead)
-- Relationships (delegates, approvers, frequent travelers with)
-- Loyalty programs (Marriott Gold, United Premier)
-- Context (role, travel frequency, typical destinations, business justifications)
+- **Explicit preferences:** User-declared choices (window seats, Marriott loyalty, vegetarian meals)
+- **Learned patterns:** AI-detected behaviors (parks at PAE airport, flies from SEA, books 2 weeks ahead)
+- **Contextual rules:** Conditional preferences ("Avoids United if Boeing 737 Max", "Prefers Uber/Lyft in NYC")
+- **Relationships:** Delegates, approvers, frequent travel companions, executive assistants
+- **Loyalty programs:** Marriott Bonvoy Gold (22-year member), United MileagePlus Premier
+- **Travel context:** Role, travel frequency, typical destinations, meeting schedules, business justifications
+- **Dining patterns:** Cuisine preferences, dietary restrictions, spending habits (solo vs. client dinners)
+- **Ground transport:** Service preferences (Lyft Extra Comfort), location-specific choices
 
 ### Profile Validation & Completeness
-- Detects missing required fields for bookings (passport for international, loyalty numbers, TSA PreCheck)
-- Proactively prompts conversationally to complete profile during booking flow
-- Prevents booking failures by validating profile completeness before transaction
-- Updates the profile in real time as users provide information during conversations
+- **Missing field detection:** Identifies required fields based on travel scenario (passport for international, TSA PreCheck for domestic)
+- **Conversational prompting:** Proactively asks users to complete profile during booking flow ("Fred, I need your passport number for this London trip")
+- **Booking failure prevention:** Validates profile completeness before transaction to avoid denied boarding or failed reservations
+- **Real-time updates:** Updates profile as users provide information during conversations with agents
+- **Expiration monitoring:** Alerts users to expiring credentials (passport expires in 6 months, TSA PreCheck renewal due)
+- **Scenario-based validation:** Different requirements for international vs. domestic, airline loyalty programs, hotel preferences
+
+### Intelligence Capabilities
+- **Predictive analytics:** Estimates trip costs based on historical patterns, predicts expense categories before they occur
+- **Anomaly detection:** Flags unusual expenses (parking at wrong airport, meal costs outside typical range)
+- **Pattern recognition:** Learns preferences automatically from 5+ data points (window seats, Marriott hotels, evening flights)
+- **Confidence scoring:** Calculates reliability of learned preferences (98% confidence = auto-apply, 70% = suggest)
+- **Adaptive learning:** Detects pattern changes (Fred switches from window to aisle seats) and prompts for confirmation
+- **Context-aware recommendations:** "Arrive 2 hours before first meeting" not just "morning flights"
 
 ---
 
